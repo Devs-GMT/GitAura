@@ -9,7 +9,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 1 | Smart contract + test | ✅ | `forge test -vv`: 25/25 hijau (matrix §4 #1–#11 + edge case + fuzz); `Deploy.s.sol` tersimulasi lokal |
 | 2 | Deploy testnet | ✅ | alamat: [`0x54004efF59C672BB94BD662741589e9Ae6ECFcA8`](https://scan.bohr.life/address/0x54004efF59C672BB94BD662741589e9Ae6ECFcA8) · tx `0x2a42…f976` · attester test `0x50b4Fd0E7485299ce250b275e24BA91564EAc848` · deployer `0x5219fFbF9A44F96A8931A50A31021E4724518735` |
 | 3 | Auth GitHub + session | ✅ | 15 test vitest; login → `/api/auth/me` OK di browser; logout 204 → `/me` 401; state palsu → `?login=failed` |
-| 4 | Attestation endpoint + e2e | 🟨 | 29 test vitest; `eth_call` ke kontrak testnet menerima proof dari `lib/attest.ts`; **menunggu `npm run e2e:attest -- --wallet … --send`** |
+| 4 | Attestation endpoint + e2e | ✅ | 29 test vitest; e2e testnet: Aura #0 `@gitaura-e2e` tersimpan, tx `0x30f3…9af61` (gas 241 289); `getAura`/`auraIdOf`/event dicek via `cast` |
 | 5 | Stats GitHub + AI + fallback | ⬜ | |
 | 6 | UI shell & design system | ⬜ | |
 | 7 | Flow utama | ⬜ | |
@@ -45,6 +45,7 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 4 · Script e2e mengirim tx via `cast send --account deployer` (bukan key di Node) · key deployer tetap di keystore Foundry; default username `gitaura-e2e`
 - 2026-10-17 · 4 · Urutan cek `/api/auth/attest`: origin → rate limit → session → body (4 KB) → wallet → signer · request asing/berlebih ditolak sebelum kerja mahal
 - 2026-10-17 · 4 · `tsconfig` target ES2017 → ES2020; `tsx` sebagai devDep (`--conditions=react-server` agar `server-only` jadi no-op di script) · BigInt literal & menjalankan lib server dari CLI
+- 2026-10-17 · 4 · Aura #0 di kontrak testnet adalah data uji `@gitaura-e2e` (owner deployer) · gallery Fase 8 akan menampilkannya; deploy ulang testnet/mainnet tidak terpengaruh
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
