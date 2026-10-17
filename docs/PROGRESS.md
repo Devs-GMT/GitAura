@@ -8,7 +8,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 0 | Scaffold | ✅ | Next 15.5 + Tailwind v4, Foundry + OZ v5.7.0; `forge build`, lint, typecheck, test, `npm run dev` OK |
 | 1 | Smart contract + test | ✅ | `forge test -vv`: 25/25 hijau (matrix §4 #1–#11 + edge case + fuzz); `Deploy.s.sol` tersimulasi lokal |
 | 2 | Deploy testnet | ✅ | alamat: [`0x54004efF59C672BB94BD662741589e9Ae6ECFcA8`](https://scan.bohr.life/address/0x54004efF59C672BB94BD662741589e9Ae6ECFcA8) · tx `0x2a42…f976` · attester test `0x50b4Fd0E7485299ce250b275e24BA91564EAc848` · deployer `0x5219fFbF9A44F96A8931A50A31021E4724518735` |
-| 3 | Auth GitHub + session | ⬜ | |
+| 3 | Auth GitHub + session | 🟨 | route + 15 test vitest OK; smoke test dev server OK (401 /me, redirect GitHub tanpa scope, state palsu → `?login=failed`, logout origin asing → 403); **menunggu uji login di browser** |
 | 4 | Attestation endpoint + e2e | ⬜ | |
 | 5 | Stats GitHub + AI + fallback | ⬜ | |
 | 6 | UI shell & design system | ⬜ | |
@@ -33,6 +33,12 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 2 · `rpc_endpoints` `bohr`/`botchain` di `foundry.toml`; ABI diekspor via `npm run abi` (`web/scripts/export-abi.mjs` → `web/lib/abi.ts`, `as const`) · satu sumber dari artefak Foundry, regenerasi tiap kontrak berubah
 - 2026-10-17 · 2 · Simulasi deploy ke 968 (`--sender` deployer, tanpa broadcast): ~2,23 jt gas, ~0,045 token · saldo deployer testnet 10
 - 2026-10-17 · 2 · Deploy testnet sukses; dicek via RPC: bytecode 7686 B, `attester()` = attester test, `total()` = 0, explorer 200 · `NEXT_PUBLIC_CONTRACT_ADDRESS` diisi di `web/.env.local` (lokal saja)
+- 2026-10-17 · 3 · Ikuti API_SPEC (bukan BUILD_PLAN) untuk bentuk session: JWT `{ sub: login, avatar }`, `/api/auth/me` → `{ login, avatar }`, callback sukses → `/?login=ok` · API_SPEC lebih rinci; UI (Fase 7) pakai field `avatar`
+- 2026-10-17 · 3 · Route handler hanya memakai `req.cookies` / `res.cookies` (bukan `next/headers`) · bisa dites langsung di vitest tanpa konteks request Next
+- 2026-10-17 · 3 · Token GitHub hanya di dalam `fetchGitHubIdentity` (`lib/oauth.ts`); log error hanya pesan generik · aturan keras #2; test memastikan token tidak muncul di header/cookie
+- 2026-10-17 · 3 · State dibandingkan `timingSafeEqual`; `ga_state` dihapus di semua jalur callback · cegah login CSRF & reuse state
+- 2026-10-17 · 3 · `ga_return` (opsional) belum diimplementasikan · tidak dibutuhkan selama login selalu kembali ke `/`
+- 2026-10-17 · 3 · OAuth App dev memakai form baru GitHub ("Redirect URIs"), "Expire user access tokens" dimatikan · token dibuang setelah `GET /user`, refresh token tak perlu
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
