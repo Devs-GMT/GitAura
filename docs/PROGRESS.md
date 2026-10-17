@@ -59,6 +59,7 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 6 · `AuraCard`/`SaveBar`/`SuccessPanel`/`Toast` dibuat di Fase 7, teaser galeri di Fase 8; Peek di Fase 6 hanya demo ticker · fase 6 = shell; komponen kartu langsung dibangun dengan data nyata
 - 2026-10-17 · 6 · Uji visual: Chrome headless + iframe 360/375px (headless Windows punya lebar jendela minimum ~500px) · screenshot di scratchpad, tidak di-commit
 - 2026-10-17 · 6 · How it works dirombak ke gaya Relume (permintaan user): 3 `StepCard` split (panel grid kuning/pink/oranye + tepi pixel `PixelEdge` + mockup `SignInMock`/`RevealMock`/`StampMock` yang terpotong di tepi; sisi bergantian), teks: ikon, eyebrow, heading, body, CTA, 3 fitur · copy baru ditambahkan ke UI_COPY.md + `copy.ts`; DESIGN_SYSTEM §4 diperbarui
+- 2026-10-17 · 6 · Dekorasi kubus `Voxels` diganti `PixelSparkles` (gugus bintang kilau pixel-art kuning/oranye/pink, berfaset, twinkle) — pilihan user dari 3 opsi (sparkle / contribution grid / stamp seal) · nyambung dengan tepi pixel StepCard & tema "aura"; token warna `voxel-*` tetap dipakai
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)

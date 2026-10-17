@@ -2,7 +2,7 @@ import { CHAIN, CONTRACT_ADDRESS } from "@/lib/config";
 import { COPY } from "@/lib/copy";
 import { shortAddress } from "@/lib/format";
 import { Badge } from "./Badge";
-import { Voxels } from "./Voxels";
+import { PixelSparkles } from "./PixelSparkles";
 
 // Ilustrasi bukti stamp on-chain (id & tx contoh). Dekoratif.
 export function StampMock() {
@@ -15,7 +15,7 @@ export function StampMock() {
 
   return (
     <div className="relative h-full w-full">
-      <Voxels corner="top-right" size={260} rotate={-6} className="max-md:hidden" />
+      <PixelSparkles corner="top-right" size={260} rotate={-6} className="max-md:hidden" />
       <div className="absolute left-6 top-8 w-[300px] max-w-[calc(100%-1.5rem)] rounded-[24px] border border-border bg-surface p-5 shadow-card md:-bottom-8 md:left-12 md:top-auto md:w-[440px] md:max-w-none md:p-7">
         <div className="flex items-center justify-between gap-3">
           <p className="text-[17px] font-semibold tracking-[-0.01em] md:text-[22px]">{COPY.save.success(12)}</p>

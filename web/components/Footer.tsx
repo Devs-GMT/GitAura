@@ -3,15 +3,15 @@ import { COPY } from "@/lib/copy";
 import { shortAddress } from "@/lib/format";
 import { Eyebrow } from "./Eyebrow";
 import { TypedText } from "./TypedText";
-import { Voxels } from "./Voxels";
+import { PixelSparkles } from "./PixelSparkles";
 
 const EXTERNAL = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden pb-28 pt-[72px] md:pb-10 md:pt-[120px]">
-      <Voxels corner="bottom-left" size={240} className="opacity-90 max-md:w-[150px]" />
-      <Voxels corner="bottom-right" size={240} rotate={6} className="max-md:w-[150px]" />
+    <footer className="relative overflow-hidden pb-10 pt-[72px] md:pb-36 md:pt-[120px]">
+      <PixelSparkles corner="bottom-left" size={200} className="opacity-90 max-md:hidden" />
+      <PixelSparkles corner="bottom-right" size={200} rotate={6} className="max-md:hidden" />
 
       <div className="container-page relative">
         <Eyebrow>{COPY.footer.eyebrow}</Eyebrow>

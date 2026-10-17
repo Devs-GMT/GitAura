@@ -61,7 +61,7 @@ gitaura/
 │  │     ├─ auth/logout/route.ts
 │  │     ├─ auth/attest/route.ts
 │  │     └─ aura/route.ts     # AI
-│  ├─ components/             # PromptBox, AuraCard, NavBar, WalletButton, Footer, Voxels, LangMarquee, Badges…
+│  ├─ components/             # PromptBox, AuraCard, NavBar, WalletButton, Footer, PixelSparkles, LangMarquee, Badges…
 │  ├─ lib/
 │  │  ├─ config.ts            # chain, CONTRACT_ADDRESS (satu konstanta), explorer URL
 │  │  ├─ abi.ts               # ABI GitAura
@@ -158,7 +158,7 @@ System: playful, ramah, **tidak pernah menghina**, output **hanya JSON** `{ "tit
 
 ## 3. Arah UI (referensi Relume)
 
-- **Mood:** terang, crafted, "AI tool for builders"; kanvas off-white hangat, satu aksen pink panas, voxel 3D playful.
+- **Mood:** terang, crafted, "AI tool for builders"; kanvas off-white hangat, satu aksen pink panas, sparkle pixel-art playful.
 - **Token warna** (taruh di `@theme` Tailwind):
   `bg #F2F0EC` · `surface #FAFAF8` · `border #E4E1DA` · `text #111111` · `muted #5E5B55` · `accent #E83AD6` · `voxel-yellow #F6C945` · `voxel-orange #E8642C`
 - **Tipografi:** heading grotesk (Geist / Inter Display via `next/font`), body grotesk, **eyebrow monospace UPPERCASE pink** (Geist Mono).
@@ -170,7 +170,7 @@ System: playful, ramah, **tidak pernah menghina**, output **hanya JSON** `{ "tit
 - **Nav:** logo kiri; kanan: chip avatar GitHub (saat login) + [Sign out], pill pink **[Connect wallet]** (alamat pendek setelah connect), hamburger di mobile.
 - **Badge:** `✓ Verified` (outline pink) untuk kartu tersimpan; `Preview` (abu) untuk kartu peek; `classic aura` untuk fallback.
 - **Aura card:** avatar, @username, title AI, vibe satu baris, 3 trait chips, stats (repos · followers · bar top 3 bahasa · repo paling banyak star), gradient dari bahasa teratas.
-- **Dekorasi:** kubus voxel isometrik kuning/oranye dengan tekstur grid — **SVG buatan sendiri**, mengintip dari tepi hero & sudut footer.
+- **Dekorasi:** gugus bintang kilau 4 sudut ala pixel-art (kuning/oranye + sedikit pink) — **SVG buatan sendiri** (`PixelSparkles`), mengintip dari tepi hero & sudut footer. (Awalnya kubus voxel; diganti 2026-10-17.)
 - **Logo strip:** card rounded dengan marquee lambat berisi nama bahasa (TypeScript, Rust, Python…).
 - **How it works:** eyebrow "CHOOSE YOUR PATH" → 3 langkah: Sign in → Reveal → Stamp.
 - **Footer (wajib):** eyebrow "STAMPED ON-CHAIN"; prompt-box lebar glow pink berisi teks mono yang diketik: `Built on BOT Chain · chain ID 677 ▉` (kursor berkedip); kanan-bawah: chip **[■ BOT Chain]** → `https://botchain.ai` (tab baru), chip mono alamat pendek `0x12ab…9f3c`, tombol pink **[View on explorer ↗]** → `https://scan.botchain.ai/address/<CONTRACT_ADDRESS>` (tab baru). Voxel di kedua sudut bawah. Baris bawah: "© GitAura 2026" kiri, "Not affiliated with GitHub" kanan (muted). Mobile: chip stack full-width.
@@ -220,7 +220,7 @@ System: playful, ramah, **tidak pernah menghina**, output **hanya JSON** `{ "tit
 
 ### Fase 6 — UI shell & design system (60 menit)
 **Prompt:**
-> Bangun design system & layout sesuai `docs/DESIGN_SYSTEM.md` dan teks dari `docs/UI_COPY.md` (buat `lib/copy.ts`): token Tailwind, font, komponen `NavBar`, `PromptBox`, `Eyebrow`, `Chip`, `Badge` (Verified/Preview/Classic), `Voxels` (SVG isometrik buatan sendiri), `LangMarquee`, section "How it works", dan `Footer` lengkap (wajib, dengan `CONTRACT_ADDRESS` dari satu konstanta di `lib/config.ts`). Gunakan data dummy dulu. Responsif mobile & desktop.
+> Bangun design system & layout sesuai `docs/DESIGN_SYSTEM.md` dan teks dari `docs/UI_COPY.md` (buat `lib/copy.ts`): token Tailwind, font, komponen `NavBar`, `PromptBox`, `Eyebrow`, `Chip`, `Badge` (Verified/Preview/Classic), `PixelSparkles` (SVG pixel-art buatan sendiri), `LangMarquee`, section "How it works", dan `Footer` lengkap (wajib, dengan `CONTRACT_ADDRESS` dari satu konstanta di `lib/config.ts`). Gunakan data dummy dulu. Responsif mobile & desktop.
 
 **Selesai jika:** landing tampil rapi di 375px dan 1440px; link footer benar.
 

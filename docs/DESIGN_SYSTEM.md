@@ -1,6 +1,6 @@
 # Design System — GitAura (referensi Relume)
 
-Mood: terang, crafted, "AI tool for builders". Kanvas off-white hangat, **satu** aksen pink panas, voxel 3D playful. Banyak whitespace, kartu rounded besar, bayangan lembut.
+Mood: terang, crafted, "AI tool for builders". Kanvas off-white hangat, **satu** aksen pink panas, sparkle pixel-art playful. Banyak whitespace, kartu rounded besar, bayangan lembut.
 
 ## 1. Token (Tailwind v4 `@theme` di `app/globals.css`)
 ```css
@@ -57,7 +57,7 @@ Font via `next/font` (paket `geist`). Body `bg-bg text-ink`.
 | `SaveBar` | Di bawah AuraCard: status langkah (Connect → Prove → Sign → Confirmed) + tombol utama. |
 | `SuccessPanel` | "Aura #ID" + Verified badge, link tx (explorer), [Copy share link], [Share on X]. |
 | `TickerText` | Mono, ganti kalimat tiap ~900ms dengan fade + caret ▉ berkedip. |
-| `Voxels` | SVG isometrik buatan sendiri: kubus 3 sisi (top lebih terang), isi kuning/oranye, tekstur grid tipis (pattern 6px, opacity 0.15). Prop `corner`, `size`, `rotate`. Posisi absolute, `pointer-events-none`, sebagian keluar layar. |
+| `PixelSparkles` | SVG pixel-art buatan sendiri: gugus bintang kilau 4 sudut (13×13 kuning, 7×7 oranye, 5×5 pink), tiap pixel diarsir terang/dasar/gelap (kesan permata berfaset), garis pixel tipis; sparkle kecil berkedip (`animate-twinkle`, mati saat reduced-motion). Prop `corner`, `size`, `rotate`. Absolute, `pointer-events-none`, mengintip ±12% dari tepi. (Menggantikan kubus `Voxels`, 2026-10-17.) |
 | `LangMarquee` | Card rounded berisi baris nama bahasa (mono, muted) bergulir pelan (40s loop), mask fade di kiri-kanan. |
 | `HowItWorks` | Eyebrow "CHOOSE YOUR PATH" + H2, lalu 3 `StepCard` bergaya Relume (split card, sisi visual bergantian). Teks: ikon tile pink, eyebrow, heading 28→36px, body muted, CTA, garis, 3 fitur (ikon kotak + judul + 1 baris muted). Visual: panel berwarna (kuning / pink / oranye — pakai warna aksen & voxel saja) dengan grid putih 24px, tepi "pixel" bertangga ke sisi teks, mockup buatan sendiri (`SignInMock`, `RevealMock`, `StampMock`) terpotong keluar panel. Mobile: visual di atas, teks di bawah. |
 | `GalleryGrid` | 1 / 2 / 3 kolom; kartu mini (gradient strip, avatar, title, @username, Verified). Skeleton saat load. |
@@ -66,7 +66,7 @@ Font via `next/font` (paket `geist`). Body `bg-bg text-ink`.
 
 ## 5. Halaman
 **`/` (landing)**
-1. Hero: eyebrow → H1 "What's your GitHub aura?" → subtitle → `PromptBox`. `Voxels` mengintip dari kiri-atas & kanan-bawah hero.
+1. Hero: eyebrow → H1 "What's your GitHub aura?" → subtitle → `PromptBox`. `PixelSparkles` mengintip dari kiri-atas & kanan-bawah hero.
 2. Hasil: `AuraCard` + `SaveBar` muncul menggantikan/di bawah PromptBox (scroll halus ke kartu).
 3. `LangMarquee`
 4. `HowItWorks`
@@ -80,7 +80,7 @@ Font via `next/font` (paket `geist`). Body `bg-bg text-ink`.
 - Eyebrow "STAMPED ON-CHAIN".
 - Prompt-box lebar (glow pink) berisi teks mono diketik: `Built on BOT Chain · chain ID 677` + caret ▉ berkedip.
 - Kanan-bawah box: chip **[■ BOT Chain]** (logo BOT Chain) → `https://botchain.ai`; chip mono abu alamat pendek `0x12ab…9f3c`; tombol pink **[View on explorer ↗]** → `{EXPLORER}/address/{CONTRACT_ADDRESS}`. Semua `target="_blank" rel="noopener noreferrer"`.
-- Voxels di kedua sudut bawah.
+- `PixelSparkles` di kedua sudut bawah (desktop; disembunyikan di mobile agar tidak menimpa teks).
 - Baris bawah: "© GitAura 2026" (kiri), "Not affiliated with GitHub" (kanan, muted).
 - Mobile: chip & tombol stack full-width.
 
@@ -93,5 +93,5 @@ Font via `next/font` (paket `geist`). Body `bg-bg text-ink`.
 
 ## 8. Larangan
 - Jangan menyalin aset, ilustrasi, atau logo Relume — hanya gaya.
-- Jangan pakai lebih dari satu aksen warna selain voxel.
+- Jangan pakai lebih dari satu aksen warna selain warna dekorasi kuning/oranye (token `voxel-*`).
 - Jangan ubah logo GitHub (warna, proporsi).
