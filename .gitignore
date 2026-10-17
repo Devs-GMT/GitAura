@@ -1,0 +1,22 @@
+# secrets — hanya .env.example yang boleh di-commit
+.env*
+!.env.example
+*.pem
+*.key
+
+# contracts (Foundry)
+contracts/out/
+contracts/cache/
+broadcast/
+contracts/broadcast/
+
+# web (Next.js) — detail di web/.gitignore
+node_modules/
+.next/
+.vercel/
+coverage/
+*.tsbuildinfo
+
+# os / editor
+.DS_Store
+Thumbs.db
