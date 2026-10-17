@@ -8,8 +8,8 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 0 | Scaffold | ✅ | Next 15.5 + Tailwind v4, Foundry + OZ v5.7.0; `forge build`, lint, typecheck, test, `npm run dev` OK |
 | 1 | Smart contract + test | ✅ | `forge test -vv`: 25/25 hijau (matrix §4 #1–#11 + edge case + fuzz); `Deploy.s.sol` tersimulasi lokal |
 | 2 | Deploy testnet | ✅ | alamat: [`0x54004efF59C672BB94BD662741589e9Ae6ECFcA8`](https://scan.bohr.life/address/0x54004efF59C672BB94BD662741589e9Ae6ECFcA8) · tx `0x2a42…f976` · attester test `0x50b4Fd0E7485299ce250b275e24BA91564EAc848` · deployer `0x5219fFbF9A44F96A8931A50A31021E4724518735` |
-| 3 | Auth GitHub + session | 🟨 | route + 15 test vitest OK; smoke test dev server OK (401 /me, redirect GitHub tanpa scope, state palsu → `?login=failed`, logout origin asing → 403); **menunggu uji login di browser** |
-| 4 | Attestation endpoint + e2e | ⬜ | |
+| 3 | Auth GitHub + session | ✅ | 15 test vitest; login → `/api/auth/me` OK di browser; logout 204 → `/me` 401; state palsu → `?login=failed` |
+| 4 | Attestation endpoint + e2e | 🟨 | 29 test vitest; `eth_call` ke kontrak testnet menerima proof dari `lib/attest.ts`; **menunggu `npm run e2e:attest -- --wallet … --send`** |
 | 5 | Stats GitHub + AI + fallback | ⬜ | |
 | 6 | UI shell & design system | ⬜ | |
 | 7 | Flow utama | ⬜ | |
@@ -39,6 +39,12 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 3 · State dibandingkan `timingSafeEqual`; `ga_state` dihapus di semua jalur callback · cegah login CSRF & reuse state
 - 2026-10-17 · 3 · `ga_return` (opsional) belum diimplementasikan · tidak dibutuhkan selama login selalu kembali ke `/`
 - 2026-10-17 · 3 · OAuth App dev memakai form baru GitHub ("Redirect URIs"), "Expire user access tokens" dimatikan · token dibuang setelah `GET /user`, refresh token tak perlu
+- 2026-10-17 · 3 · Satu kali `?login=failed` saat uji browser (gagal di cek state, sebelum ke GitHub; percobaan berikutnya OK) · perilaku aman; pantau jika berulang di alur normal
+- 2026-10-17 · 4 · `lib/config.ts` = satu-satunya sumber chain/RPC/explorer/`CONTRACT_ADDRESS`/tabel `LANGUAGES` (topLang) · aturan #5; `nativeCurrency` sementara `BOT/BOT/18` (TODO konfirmasi)
+- 2026-10-17 · 4 · Digest TS dicocokkan dengan vektor `cast abi-encode` + `cast keccak` di test, plus `eth_call` ke kontrak testnet di script e2e · bukti independen dari ethers bahwa encoding identik
+- 2026-10-17 · 4 · Script e2e mengirim tx via `cast send --account deployer` (bukan key di Node) · key deployer tetap di keystore Foundry; default username `gitaura-e2e`
+- 2026-10-17 · 4 · Urutan cek `/api/auth/attest`: origin → rate limit → session → body (4 KB) → wallet → signer · request asing/berlebih ditolak sebelum kerja mahal
+- 2026-10-17 · 4 · `tsconfig` target ES2017 → ES2020; `tsx` sebagai devDep (`--conditions=react-server` agar `server-only` jadi no-op di script) · BigInt literal & menjalankan lib server dari CLI
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)

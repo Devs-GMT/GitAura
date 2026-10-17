@@ -9,7 +9,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
-    "abi": "node scripts/export-abi.mjs"
+    "abi": "node scripts/export-abi.mjs",
+    "e2e:attest": "tsx --conditions=react-server scripts/attest-e2e.mts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.135.0",
@@ -30,6 +31,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.28",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^5.0.5"
   }
