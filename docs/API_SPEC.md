@@ -75,7 +75,10 @@ Fallback (AI error / timeout 8 s / output invalid / key kosong):
 ### AI prompt (di `lib/ai.ts`)
 - System: "You write playful, kind developer personality cards from GitHub stats. Never insult, never mention numbers being low, never reference real-world identity traits. Reply with ONLY minified JSON: {\"title\":string<=80,\"vibe\":string<=160,\"traits\":[3 strings<=24]}. Title format like 'The {Adjective} {Language} {Archetype}'."
 - User: JSON stats.
-- `max_tokens` ~200, temperature tinggi-sedang. Parse aman (`JSON.parse` dalam try, ambil blok `{...}` pertama).
+- **Provider: Google Gemini API** (free tier). `POST https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent`, header `x-goog-api-key: {GEMINI_API_KEY}`. Body: `systemInstruction`, `contents` (stats JSON), `generationConfig: { responseMimeType: "application/json", responseSchema, temperature ~0.9, maxOutputTokens ~400 }`.
+- Model default `gemini-3.5-flash-lite` (stable, tercepat & termurah, gratis di free tier); alternatif `gemini-3.8-flash` (lebih kreatif, kuota free lebih ketat). Ganti via env `GEMINI_MODEL` tanpa ubah kode.
+- Free tier: konten request **boleh dipakai Google untuk meningkatkan produk** → hanya ringkasan stats publik yang dikirim (tidak ada bio/data pribadi). Kuota free per model dicek di AI Studio; 429 dari Gemini → fallback.
+- Parse aman (`JSON.parse` dalam try, ambil blok `{...}` pertama), lalu validasi zod.
 
 ### Reuse (ChefBOT / PocketLM)
 Pisahkan `lib/ai.ts` menjadi `callJson<T>(system, user, schema, timeoutMs)` generik supaya route lain (`/api/recipes`, `/api/study`, `/api/ask`) cukup memasok prompt + zod schema.

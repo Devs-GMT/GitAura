@@ -46,6 +46,7 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 4 · Urutan cek `/api/auth/attest`: origin → rate limit → session → body (4 KB) → wallet → signer · request asing/berlebih ditolak sebelum kerja mahal
 - 2026-10-17 · 4 · `tsconfig` target ES2017 → ES2020; `tsx` sebagai devDep (`--conditions=react-server` agar `server-only` jadi no-op di script) · BigInt literal & menjalankan lib server dari CLI
 - 2026-10-17 · 4 · Aura #0 di kontrak testnet adalah data uji `@gitaura-e2e` (owner deployer) · gallery Fase 8 akan menampilkannya; deploy ulang testnet/mainnet tidak terpengaruh
+- 2026-10-17 · 5 · **Provider AI: Google Gemini (free tier)**, bukan Anthropic. REST `generateContent` via `fetch` (tanpa SDK; `@anthropic-ai/sdk` dihapus). Env `GEMINI_API_KEY` + `GEMINI_MODEL` (default `gemini-3.5-flash-lite`, alternatif `gemini-3.8-flash`) · permintaan user (gratis); PRD tidak menetapkan provider. Free tier: data request boleh dipakai Google → hanya ringkasan stats publik yang dikirim
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
@@ -54,5 +55,7 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - [x] Konfirmasi versi EVM BOT Chain → Cancun-compatible, `evm_version = "cancun"` (fase 1)
 - [ ] Boilerplate create-next-app (`web/app/page.tsx`, `web/public/*.svg`, `web/README.md`) diganti di Fase 6
 - [ ] Drive C hampir penuh (~0,6 GB): npm install memakai `--cache D:/npm-cache`
+
+- [ ] Isi `GEMINI_API_KEY` (AI Studio) untuk uji AI sungguhan di Fase 5; tanpa key → fallback
 
 ## Bug diketahui

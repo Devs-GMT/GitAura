@@ -19,7 +19,7 @@ File ini dibaca otomatis oleh Claude Code di setiap sesi. Jaga tetap ringkas; de
 | `docs/PROGRESS.md` | Status fase & catatan keputusan | **Update di akhir setiap fase** |
 
 ## Stack
-- `web/` — Next.js 15 App Router, TypeScript strict, Tailwind v4, ethers v6, jose, zod, @anthropic-ai/sdk
+- `web/` — Next.js 15 App Router, TypeScript strict, Tailwind v4, ethers v6, jose, zod; AI = Google Gemini API (REST `generateContent` via `fetch`, tanpa SDK)
 - `contracts/` — Solidity ^0.8.20, Foundry, OpenZeppelin (ECDSA, MessageHashUtils)
 - Hosting: Vercel. Chain: BOT Chain (testnet 968, mainnet 677)
 
@@ -37,7 +37,7 @@ npm run lint && npm run typecheck && npm test
 1. **Tidak ada secret di kode/repo.** Baca dari `process.env`. Jangan pernah membuat file `.env.local` berisi nilai asli; jangan cetak secret ke log.
 2. **Token GitHub** hanya hidup di dalam handler callback: tidak disimpan, tidak dikirim ke browser. OAuth scope kosong.
 3. **Skema signature harus identik** antara `contracts/src/GitAura.sol` dan `web/lib/attest.ts` (lihat `docs/CONTRACT_SPEC.md` §3). Jika mengubah salah satu, ubah keduanya dan jalankan test e2e.
-4. Variabel `NEXT_PUBLIC_*` hanya untuk nilai publik. `ATTESTER_PRIVATE_KEY`, `GITHUB_CLIENT_SECRET`, `SESSION_SECRET`, `ANTHROPIC_API_KEY` hanya di server (`import "server-only"`).
+4. Variabel `NEXT_PUBLIC_*` hanya untuk nilai publik. `ATTESTER_PRIVATE_KEY`, `GITHUB_CLIENT_SECRET`, `SESSION_SECRET`, `GEMINI_API_KEY` hanya di server (`import "server-only"`).
 5. Alamat kontrak, chain ID, RPC, explorer URL **hanya** dari `web/lib/config.ts`.
 6. Out of scope: DB backend, NFT/token/pembayaran, repo privat, write access GitHub, edit kartu orang lain, likes/komentar.
 7. Jangan menjalankan deploy mainnet atau transaksi yang memakai private key asli tanpa diminta eksplisit.

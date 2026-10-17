@@ -14,7 +14,7 @@
 ┌─────▼──────── Next.js Route Handlers (Vercel, server) ───┐
 │ auth/github/login · callback · me · logout               │
 │ auth/attest  → signs with ATTESTER_PRIVATE_KEY           │
-│ aura         → Anthropic API (ringkasan stats saja)      │
+│ aura         → Gemini API (ringkasan stats saja)         │
 └──────────────────────────────────────────────────────────┘
 ```
 

@@ -6,7 +6,7 @@ Langkah yang **kamu** kerjakan manual (Claude Code tidak boleh memegang secret a
 - Node.js 20+ dan npm
 - Foundry (`curl -L https://foundry.paradigm.xyz | bash && foundryup`)
 - MetaMask
-- Akun GitHub, Vercel, Anthropic Console
+- Akun GitHub, Vercel, Google AI Studio (Gemini API key, free tier)
 
 ## 2. Wallet
 | Wallet | Kegunaan | Dana? | Disimpan di |
@@ -43,7 +43,8 @@ Ambil Client ID, buat Client Secret.
 | `GITHUB_CLIENT_SECRET` | dari OAuth App | **rahasia** |
 | `SESSION_SECRET` | `openssl rand -base64 48` | **rahasia** |
 | `ATTESTER_PRIVATE_KEY` | dari `cast wallet new` | **rahasia** |
-| `ANTHROPIC_API_KEY` | Anthropic Console | **rahasia** |
+| `GEMINI_API_KEY` | https://aistudio.google.com/apikey → Create API key | **rahasia** |
+| `GEMINI_MODEL` | `gemini-3.5-flash-lite` (default; lihat API_SPEC §AI) | tidak |
 | `ALLOWED_ORIGINS` | `http://localhost:3000` / `https://<domain>` | tidak |
 | `NEXT_PUBLIC_CHAIN_ID` | `968` / `677` | ya |
 | `NEXT_PUBLIC_CONTRACT_ADDRESS` | hasil deploy | ya |
@@ -71,6 +72,6 @@ Jika explorer mendukung verifikasi (Blockscout-like), coba `forge verify-contrac
 
 ## 8. Checklist keamanan sebelum push
 - [ ] `git ls-files | grep -E '\.env($|\.)'` hanya mengembalikan `.env.example`
-- [ ] `git log -p | grep -iE 'private_key|secret|sk-ant'` kosong
+- [ ] `git log -p | grep -iE 'private_key|secret|AIza'` kosong
 - [ ] Attester prod ≠ attester test
 - [ ] `broadcast/` tidak berisi key (aman, tapi boleh di-gitignore)

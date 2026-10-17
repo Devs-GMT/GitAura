@@ -19,7 +19,7 @@
 | Web3 client | **ethers v6** (MetaMask via `BrowserProvider`) | Sesuai PRD |
 | Server signing | ethers v6 `Wallet` (attester key) | Hanya di server |
 | Session | `jose` (JWT HS256) di cookie httpOnly | Tanpa database |
-| AI | Anthropic API (`@anthropic-ai/sdk`) — model kecil/cepat | Bisa diganti provider lain; isolasi di `lib/ai.ts` |
+| AI | **Google Gemini API** (free tier) — REST `generateContent` via `fetch`, model dari env `GEMINI_MODEL` (default `gemini-3.5-flash-lite`) | Diputuskan 2026-10-17 (sebelumnya Anthropic); provider terisolasi di `lib/ai.ts` |
 | Contract | **Solidity ^0.8.20 + Foundry** + OpenZeppelin | Remix tetap boleh untuk cek cepat |
 | Hosting | **Vercel** (+ custom domain) | GitHub Pages tidak bisa menjalankan API routes |
 
@@ -136,7 +136,8 @@ GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 SESSION_SECRET=                 # 32+ char random
 ATTESTER_PRIVATE_KEY=           # wallet khusus, tanpa dana
-ANTHROPIC_API_KEY=
+GEMINI_API_KEY=                 # Google AI Studio; kosong → fallback
+GEMINI_MODEL=gemini-3.5-flash-lite
 ALLOWED_ORIGINS=http://localhost:3000
 NEXT_PUBLIC_CHAIN_ID=968        # 677 di produksi
 NEXT_PUBLIC_CONTRACT_ADDRESS=
@@ -181,7 +182,7 @@ System: playful, ramah, **tidak pernah menghina**, output **hanya JSON** `{ "tit
 
 ### Fase 0 — Scaffold (15 menit)
 **Prompt Claude Code:**
-> Baca `BUILD_PLAN.md`. Buat monorepo sesuai bagian 1: inisialisasi Foundry di `contracts/` (install `OpenZeppelin/openzeppelin-contracts`), dan Next.js 15 App Router + TypeScript + Tailwind v4 di `web/` dengan dependensi `ethers@6`, `jose`, `@anthropic-ai/sdk`, `zod`. Pertahankan `CLAUDE.md`, `docs/`, `.claude/`, dan `web/.env.example` yang sudah ada (jangan ditimpa). Buat `.gitignore` yang mengecualikan `.env*` (kecuali example), `contracts/out`, `contracts/cache`, `broadcast`. Tambahkan script `typecheck` (`tsc --noEmit`) dan `test` (vitest) di `web/package.json`. Jangan tulis fitur dulu.
+> Baca `BUILD_PLAN.md`. Buat monorepo sesuai bagian 1: inisialisasi Foundry di `contracts/` (install `OpenZeppelin/openzeppelin-contracts`), dan Next.js 15 App Router + TypeScript + Tailwind v4 di `web/` dengan dependensi `ethers@6`, `jose`, `zod` (AI via `fetch` ke Gemini, tanpa SDK). Pertahankan `CLAUDE.md`, `docs/`, `.claude/`, dan `web/.env.example` yang sudah ada (jangan ditimpa). Buat `.gitignore` yang mengecualikan `.env*` (kecuali example), `contracts/out`, `contracts/cache`, `broadcast`. Tambahkan script `typecheck` (`tsc --noEmit`) dan `test` (vitest) di `web/package.json`. Jangan tulis fitur dulu.
 
 **Selesai jika:** `forge build` dan `npm run dev` jalan; `git status` tidak berisi secret.
 

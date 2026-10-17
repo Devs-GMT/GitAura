@@ -4,7 +4,7 @@ description: Audit keamanan GitAura sebelum commit/deploy
 
 Periksa repo dan laporkan temuan (jangan mengubah apa pun kecuali saya minta):
 
-1. Secret ter-commit: cari `PRIVATE_KEY`, `SECRET`, `sk-ant`, `ghp_`, `gho_`, hex 64 char di file yang di-track dan di `git log -p`.
+1. Secret ter-commit: cari `PRIVATE_KEY`, `SECRET`, `AIza` (Gemini key), `ghp_`, `gho_`, hex 64 char di file yang di-track dan di `git log -p`.
 2. File yang memakai `process.env` rahasia punya `import "server-only"` dan tidak diimpor oleh client component.
 3. Token GitHub tidak keluar dari handler callback (tidak di cookie, response, atau log).
 4. `lib/attest.ts` dan `GitAura.sol` memakai digest identik (urutan & tipe: string, address, uint64, uint256, address; EIP-191 prefix).
