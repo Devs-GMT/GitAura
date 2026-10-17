@@ -6,7 +6,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | Fase | Nama | Status | Catatan |
 |---|---|---|---|
 | 0 | Scaffold | ✅ | Next 15.5 + Tailwind v4, Foundry + OZ v5.7.0; `forge build`, lint, typecheck, test, `npm run dev` OK |
-| 1 | Smart contract + test | ⬜ | |
+| 1 | Smart contract + test | ✅ | `forge test -vv`: 25/25 hijau (matrix §4 #1–#11 + edge case + fuzz); `Deploy.s.sol` tersimulasi lokal |
 | 2 | Deploy testnet | ⬜ | alamat: |
 | 3 | Auth GitHub + session | ⬜ | |
 | 4 | Attestation endpoint + e2e | ⬜ | |
@@ -26,12 +26,16 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 0 · `@types/node@^22` (bukan ^20 bawaan create-next-app) · peer dep vitest 5; Node lokal v22
 - 2026-10-17 · 0 · vitest: `vitest.config.mts`, env node, alias `@` & stub `server-only` (`web/test/server-only.ts`) · supaya modul `lib/*` ber-`import "server-only"` bisa dites
 - 2026-10-17 · 0 · `web/.gitignore` ditambah `!.env.example` · template bawaan mengabaikan semua `.env*`
+- 2026-10-17 · 1 · `evm_version` paris → **cancun** · OZ 5.7 `MessageHashUtils` → `Bytes.sol` butuh MCOPY; `eth_call` ke rpc.bohr.life & rpc.botchain.ai membuktikan PUSH0/MCOPY/TSTORE didukung (kontrol `INVALID` gagal seperti seharusnya)
+- 2026-10-17 · 1 · Recover memakai `ECDSA.tryRecover`, semua kegagalan → `InvalidProof` · spec §2 langkah 4; signature malformed tidak bocor sebagai error OZ
+- 2026-10-17 · 1 · Validasi & cek proof dipecah ke `_checkLengths` / `_checkUsername` / `_checkProof` · hindari "stack too deep" tanpa `via_ir`; urutan §2 tetap
+- 2026-10-17 · 1 · Update di tempat tidak mengubah `username` (key sama); `topLang` tidak divalidasi ≤19 · tidak diminta spec; UI memetakan indeks tak dikenal → 0
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
 - [ ] Putuskan: tandatangani title/vibe? (CONTRACT_SPEC §6)
 - [ ] Logo BOT Chain resmi untuk chip footer (SVG)
-- [ ] Konfirmasi versi EVM BOT Chain (Shanghai/Cancun?) → sesuaikan `evm_version`
+- [x] Konfirmasi versi EVM BOT Chain → Cancun-compatible, `evm_version = "cancun"` (fase 1)
 - [ ] Boilerplate create-next-app (`web/app/page.tsx`, `web/public/*.svg`, `web/README.md`) diganti di Fase 6
 - [ ] Drive C hampir penuh (~0,6 GB): npm install memakai `--cache D:/npm-cache`
 
