@@ -24,6 +24,7 @@
   --animate-blink: blink 1.06s step-end infinite;
   --animate-fade-in: fade-in 220ms ease-out both;
   --animate-twinkle: twinkle 2.6s ease-in-out infinite;
+  --animate-card-in: card-in 240ms ease-out both;
 
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -31,6 +32,10 @@
   }
   @keyframes blink {
     50% { opacity: 0; }
+  }
+  @keyframes card-in {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: none; }
   }
   @keyframes twinkle {
     0%, 100% { opacity: 1; transform: scale(1); }

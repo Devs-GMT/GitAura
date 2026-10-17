@@ -12,7 +12,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 4 | Attestation endpoint + e2e | ✅ | 29 test vitest; e2e testnet: Aura #0 `@gitaura-e2e` tersimpan, tx `0x30f3…9af61` (gas 241 289); `getAura`/`auraIdOf`/event dicek via `cast` |
 | 5 | Stats GitHub + AI + fallback | ✅ | 59 test vitest; curl `/api/aura`: Gemini `gemini-3.5-flash-lite` → `source:"ai"` (1,5–3,7 s, stats asli octocat/sindresorhus); key kosong → `source:"fallback"`; 0 repo → `source:"fresh"`; stats invalid → 400 |
 | 6 | UI shell & design system | ✅ | landing (nav, hero+PromptBox, marquee, how it works, footer) dicek screenshot headless di 360/375/1440 tanpa scroll horizontal; link footer benar |
-| 7 | Flow utama | ⬜ | |
+| 7 | Flow utama | 🟨 | 68 test vitest; peek di Chrome (CDP): ticker → kartu AI → "Sign in … to save", 404 → "No GitHub user by that name", 375px tanpa scroll horizontal; **menunggu uji manual MetaMask: sign in → reveal → stamp di testnet** |
 | 8 | Gallery & share link | ⬜ | |
 | 9 | Mainnet & live | ⬜ | alamat mainnet: · URL: |
 | 10 | README, demo, submission | ⬜ | |
@@ -60,6 +60,14 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 6 · Uji visual: Chrome headless + iframe 360/375px (headless Windows punya lebar jendela minimum ~500px) · screenshot di scratchpad, tidak di-commit
 - 2026-10-17 · 6 · How it works dirombak ke gaya Relume (permintaan user): 3 `StepCard` split (panel grid kuning/pink/oranye + tepi pixel `PixelEdge` + mockup `SignInMock`/`RevealMock`/`StampMock` yang terpotong di tepi; sisi bergantian), teks: ikon, eyebrow, heading, body, CTA, 3 fitur · copy baru ditambahkan ke UI_COPY.md + `copy.ts`; DESIGN_SYSTEM §4 diperbarui
 - 2026-10-17 · 6 · Dekorasi kubus `Voxels` diganti `PixelSparkles` (gugus bintang kilau pixel-art kuning/oranye/pink, berfaset, twinkle) — pilihan user dari 3 opsi (sparkle / contribution grid / stamp seal) · nyambung dengan tepi pixel StepCard & tema "aura"; token warna `voxel-*` tetap dipakai
+- 2026-10-17 · 7 · `HomeClient` (client) memegang session + wallet untuk NavBar & Hero; LangMarquee/HowItWorks tetap server component via `children` · state bersama tanpa context global
+- 2026-10-17 · 7 · Setelah login, aura milik sendiri langsung di-reveal otomatis (sekali per kunjungan); `?login=` dibersihkan dari URL · tidak perlu tombol/teks baru di luar UI_COPY
+- 2026-10-17 · 7 · Tombol SaveBar berurutan: `Connect wallet` → `Switch to BOT Chain` (bila chain salah) → `Save my Aura on BOT Chain`; langkah ditampilkan dari `COPY.save.steps` · sesuai DESIGN_SYSTEM SaveBar
+- 2026-10-17 · 7 · `ProofExpired` (dari simulasi/estimasi ethers) → proof baru + retry otomatis sekali; kedua kali → "Your proof expired — try saving again" + Retry · BUILD_PLAN Fase 7; diuji dengan ethers di-mock
+- 2026-10-17 · 7 · title/vibe dipotong per **byte** (`clampBytes`) sebelum `saveAura` · kontrak mengukur `bytes(...).length`; emoji/non-ASCII bisa melebihi batas walau ≤80 karakter
+- 2026-10-17 · 7 · GitHub error jaringan dipetakan ke teks rate-limit GitHub; `/api/aura` gagal (selain 429) → template lokal `source:"fallback"` · UI_COPY tidak punya teks "network error"; jangan improvisasi
+- 2026-10-17 · 7 · Link share: `{SITE}/?aura={id}`; tweet via `twitter.com/intent/tweet` dengan teks persis `COPY.save.tweet` · halaman read-only dibuat Fase 8
+- 2026-10-17 · 7 · /check-states: semua baris UI_COPY §Errors tertangani via `COPY` kecuali `Aura not found` & `Couldn't load auras` (lingkup Fase 8)
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
@@ -74,5 +82,7 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - [ ] Dev tooling: `TaskStop` pada `npm run dev` bisa meninggalkan proses `next` yatim di port 3000 → cek `Get-NetTCPConnection -LocalPort 3000` bila hasil uji aneh
 
 - [ ] Verifikasi animasi ketik footer & ticker di perangkat mobile asli (di iframe headless IntersectionObserver tidak memicu)
+
+- [ ] Uji manual Fase 7 dengan MetaMask: tanpa MetaMask, jaringan salah (switch/add chain 968), tx ditolak, tx sukses → Aura #ID + Verified, copy link, share X
 
 ## Bug diketahui
