@@ -11,7 +11,7 @@ export type BadgeKind = keyof typeof STYLES;
 export function Badge({ kind }: { kind: BadgeKind }) {
   return (
     <span
-      className={`inline-flex h-6 items-center rounded-pill px-2.5 font-mono text-[12px] font-medium ${STYLES[kind]}`}
+      className={`inline-flex h-6 shrink-0 items-center whitespace-nowrap rounded-pill px-2.5 font-mono text-[12px] font-medium ${STYLES[kind]}`}
     >
       {COPY.card.badges[kind]}
     </span>

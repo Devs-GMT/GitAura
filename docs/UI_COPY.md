@@ -51,6 +51,13 @@ Pakai teks ini **persis** (bahasa Inggris). Simpan di `web/lib/copy.ts` sebagai 
 - 2 `Reveal` — `AI turns your repos and languages into a personality card.`
 - 3 `Stamp` — `Save it on BOT Chain as a verified wallet ↔ GitHub link.`
 
+Kartu fitur (gaya Relume split card; eyebrow · heading · body di atas · 3 fitur):
+| Step | Eyebrow | Heading | Fitur (judul — keterangan) | CTA |
+|---|---|---|---|---|
+| 1 | `01 · Sign in` | `Prove it's really you, in one click` | `Public data only` — `No OAuth scopes, no private repos, no write access.` · `Token never stored` — `Used once to read your username, then thrown away.` · `Peek without signing in` — `Preview anyone's aura — only owners can save theirs.` | `Sign in with GitHub` |
+| 2 | `02 · Reveal` | `AI reads your repos and writes your aura` | `Built from real stats` — `Repos, followers, stars and your top 3 languages.` · `Always kind` — `Playful titles and vibes — never a roast.` · `Never stuck` — `If the AI is slow, you still get a classic aura.` | `Peek at anyone` |
+| 3 | `03 · Stamp` | `Stamp it on BOT Chain, verified` | `Signed proof` — `Our server signs your username and wallet; the contract checks it.` · `One aura per account` — `Stamp again anytime to refresh your card.` · `Shareable link` — `Every stamped aura gets its own page.` | `View on explorer ↗` · `See all auras →` |
+
 ## Gallery
 - H1: `Aura gallery`
 - Subtitle: `Every card here was stamped by its GitHub owner.`

@@ -53,11 +53,12 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 5 · Archetype fallback deterministik: stars ≥100 → Wizard, repo ≥20 → Builder, selain itu Explorer; tanpa bahasa → "The Code Explorer". Teks vibe/traits fallback ditulis baru (UI_COPY tidak mengaturnya)
 - 2026-10-17 · 5 · Zod `/api/aura` membuang field tak dikenal (mis. `bio`) sebelum prompt · cegah prompt injection; test memastikan teks injeksi tidak sampai ke Gemini
 - 2026-10-17 · 5 · Output AI di-`trim()` lalu divalidasi ketat (title ≤80, vibe ≤160, tepat 3 traits ≤24); gagal → fallback · sesuai API_SPEC
-- 2026-10-17 · 6 · Tombol pink (`#E83AD6`) memakai teks `#111` (5,4:1), bukan putih (3,5:1) · DESIGN_SYSTEM §7; eyebrow pink kecil di atas `bg` hanya ~3,1:1 — diterima sesuai desain (label dekoratif), catat untuk audit a11y
+- 2026-10-17 · 6 · ~~Tombol pink memakai teks `#111`~~ → **diganti: semua CTA pink teks putih semibold** (permintaan user, gaya Relume) · rasio ≈3,5:1 di bawah AA 4,5:1; DESIGN_SYSTEM §7 diperbarui; eyebrow pink kecil ~3,1:1 juga diterima — catat untuk audit a11y
 - 2026-10-17 · 6 · Font Geist via `next/font/google` (bukan paket npm `geist`) · font sama, tanpa dependensi tambahan
 - 2026-10-17 · 6 · Teks footer `Built on BOT Chain · chain ID {CHAIN_ID}` mengambil chain dari config (968 di testnet, 677 di mainnet) · UI_COPY menulis 677; nilai mengikuti chain aktif agar tidak menyesatkan di testnet
 - 2026-10-17 · 6 · `AuraCard`/`SaveBar`/`SuccessPanel`/`Toast` dibuat di Fase 7, teaser galeri di Fase 8; Peek di Fase 6 hanya demo ticker · fase 6 = shell; komponen kartu langsung dibangun dengan data nyata
 - 2026-10-17 · 6 · Uji visual: Chrome headless + iframe 360/375px (headless Windows punya lebar jendela minimum ~500px) · screenshot di scratchpad, tidak di-commit
+- 2026-10-17 · 6 · How it works dirombak ke gaya Relume (permintaan user): 3 `StepCard` split (panel grid kuning/pink/oranye + tepi pixel `PixelEdge` + mockup `SignInMock`/`RevealMock`/`StampMock` yang terpotong di tepi; sisi bergantian), teks: ikon, eyebrow, heading, body, CTA, 3 fitur · copy baru ditambahkan ke UI_COPY.md + `copy.ts`; DESIGN_SYSTEM §4 diperbarui
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)

@@ -67,7 +67,7 @@ export function PromptBox({ loading = false, error = null, onPeek, showSignIn = 
               </label>
               <button
                 type="submit"
-                className="inline-flex h-[52px] items-center justify-center rounded-[14px] bg-accent px-7 text-[16px] font-semibold text-ink transition-[filter] duration-200 ease-out hover:brightness-95"
+                className="inline-flex h-[52px] items-center justify-center rounded-[14px] bg-accent px-7 text-[16px] font-semibold text-white transition-[filter] duration-200 ease-out hover:brightness-95"
               >
                 {COPY.hero.peek}
               </button>

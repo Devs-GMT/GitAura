@@ -27,7 +27,7 @@ export function Hero() {
         </h1>
         <p className="mt-6 max-w-[620px] text-[16px] leading-[1.55] text-muted md:text-[18px]">{COPY.hero.subtitle}</p>
 
-        <div className="mt-10 w-full max-w-[640px] text-left">
+        <div id="peek" className="mt-10 w-full max-w-[640px] scroll-mt-24 text-left">
           <PromptBox
             loading={loading}
             onPeek={() => {

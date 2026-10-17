@@ -59,7 +59,7 @@ Font via `next/font` (paket `geist`). Body `bg-bg text-ink`.
 | `TickerText` | Mono, ganti kalimat tiap ~900ms dengan fade + caret ▉ berkedip. |
 | `Voxels` | SVG isometrik buatan sendiri: kubus 3 sisi (top lebih terang), isi kuning/oranye, tekstur grid tipis (pattern 6px, opacity 0.15). Prop `corner`, `size`, `rotate`. Posisi absolute, `pointer-events-none`, sebagian keluar layar. |
 | `LangMarquee` | Card rounded berisi baris nama bahasa (mono, muted) bergulir pelan (40s loop), mask fade di kiri-kanan. |
-| `HowItWorks` | Eyebrow "CHOOSE YOUR PATH", 3 card bernomor: Sign in → Reveal → Stamp, masing-masing ikon kecil + 1 kalimat. |
+| `HowItWorks` | Eyebrow "CHOOSE YOUR PATH" + H2, lalu 3 `StepCard` bergaya Relume (split card, sisi visual bergantian). Teks: ikon tile pink, eyebrow, heading 28→36px, body muted, CTA, garis, 3 fitur (ikon kotak + judul + 1 baris muted). Visual: panel berwarna (kuning / pink / oranye — pakai warna aksen & voxel saja) dengan grid putih 24px, tepi "pixel" bertangga ke sisi teks, mockup buatan sendiri (`SignInMock`, `RevealMock`, `StampMock`) terpotong keluar panel. Mobile: visual di atas, teks di bawah. |
 | `GalleryGrid` | 1 / 2 / 3 kolom; kartu mini (gradient strip, avatar, title, @username, Verified). Skeleton saat load. |
 | `Footer` | Lihat §6. |
 | `Toast` | Pojok bawah, untuk "Link copied", error tx. |
@@ -87,7 +87,7 @@ Font via `next/font` (paket `geist`). Body `bg-bg text-ink`.
 ## 7. Motion & aksesibilitas
 - Transisi 150–250ms ease-out; kartu aura masuk dengan scale 0.98→1 + fade.
 - `prefers-reduced-motion`: matikan marquee, typing, ticker (tampilkan teks final).
-- Kontras: teks pink hanya untuk eyebrow/label besar; tombol pink pakai teks putih tebal (cek ≥ 4.5:1, jika kurang pakai teks `#111`).
+- Kontras: teks pink hanya untuk eyebrow/label besar. **Tombol/CTA pink selalu teks putih semibold** (keputusan 2026-10-17, gaya Relume) — rasio putih di `#E83AD6` ≈ 3,5:1 (di bawah AA 4,5:1 untuk teks normal); kompensasi: label ≥ 14px semibold, tombol tinggi ≥ 36px, focus ring jelas.
 - Semua tombol punya `aria-label` bila ikon saja; focus ring 2px pink offset 2px.
 - Gambar avatar `alt="@username avatar"`.
 

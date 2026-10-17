@@ -43,7 +43,7 @@ export function Footer() {
               <a
                 href={explorerAddressUrl(CONTRACT_ADDRESS)}
                 {...EXTERNAL}
-                className="inline-flex h-10 items-center justify-center rounded-pill bg-accent px-5 text-[14px] font-semibold text-ink hover:brightness-95"
+                className="inline-flex h-10 items-center justify-center rounded-pill bg-accent px-5 text-[14px] font-semibold text-white hover:brightness-95"
               >
                 {COPY.footer.explorer}
               </a>

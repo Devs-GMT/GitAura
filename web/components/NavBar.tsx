@@ -56,7 +56,7 @@ export function NavBar({ user, walletLabel = COPY.nav.connectWallet, onWalletCli
           <button
             type="button"
             onClick={onWalletClick}
-            className="inline-flex h-9 items-center rounded-pill bg-accent px-4 text-[14px] font-semibold text-ink transition-[filter] duration-200 ease-out hover:brightness-95"
+            className="inline-flex h-9 items-center rounded-pill bg-accent px-4 text-[14px] font-semibold text-white transition-[filter] duration-200 ease-out hover:brightness-95"
           >
             <span className={walletLabel.startsWith("0x") ? "font-mono" : ""}>{walletLabel}</span>
           </button>

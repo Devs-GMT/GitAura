@@ -50,10 +50,41 @@ export const COPY = {
     eyebrow: "CHOOSE YOUR PATH",
     title: "Three steps to your aura",
     steps: [
-      { title: "Sign in", body: "Log in with GitHub. We only read your public profile." },
-      { title: "Reveal", body: "AI turns your repos and languages into a personality card." },
-      { title: "Stamp", body: "Save it on BOT Chain as a verified wallet ↔ GitHub link." },
+      {
+        title: "Sign in",
+        eyebrow: "01 · Sign in",
+        heading: "Prove it's really you, in one click",
+        body: "Log in with GitHub. We only read your public profile.",
+        features: [
+          { title: "Public data only", body: "No OAuth scopes, no private repos, no write access." },
+          { title: "Token never stored", body: "Used once to read your username, then thrown away." },
+          { title: "Peek without signing in", body: "Preview anyone's aura — only owners can save theirs." },
+        ],
+      },
+      {
+        title: "Reveal",
+        eyebrow: "02 · Reveal",
+        heading: "AI reads your repos and writes your aura",
+        body: "AI turns your repos and languages into a personality card.",
+        features: [
+          { title: "Built from real stats", body: "Repos, followers, stars and your top 3 languages." },
+          { title: "Always kind", body: "Playful titles and vibes — never a roast." },
+          { title: "Never stuck", body: "If the AI is slow, you still get a classic aura." },
+        ],
+      },
+      {
+        title: "Stamp",
+        eyebrow: "03 · Stamp",
+        heading: "Stamp it on BOT Chain, verified",
+        body: "Save it on BOT Chain as a verified wallet ↔ GitHub link.",
+        features: [
+          { title: "Signed proof", body: "Our server signs your username and wallet; the contract checks it." },
+          { title: "One aura per account", body: "Stamp again anytime to refresh your card." },
+          { title: "Shareable link", body: "Every stamped aura gets its own page." },
+        ],
+      },
     ],
+    peekCta: "Peek at anyone",
   },
   gallery: {
     title: "Aura gallery",
