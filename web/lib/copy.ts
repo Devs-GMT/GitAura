@@ -1,0 +1,91 @@
+// Semua teks UI — docs/UI_COPY.md. Pakai persis; jangan improvisasi.
+
+export const COPY = {
+  meta: {
+    title: "GitAura — What's your GitHub aura?",
+    description:
+      "Sign in with GitHub, let AI read your public profile, and stamp your developer aura on BOT Chain.",
+    ogAura: (title: string, username: string) => `${title} — @${username} · GitAura`,
+  },
+  nav: {
+    logo: "GitAura",
+    connectWallet: "Connect wallet",
+    avatarChip: (username: string) => `@${username}`,
+    signOut: "Sign out",
+    gallery: "Gallery",
+    howItWorks: "How it works",
+  },
+  hero: {
+    eyebrow: "READ ANY DEVELOPER'S AURA",
+    title: "What's your GitHub aura?",
+    subtitle:
+      "Sign in with GitHub and AI reads your public profile, then turns it into a personality card you can stamp on-chain.",
+    signIn: "Sign in with GitHub",
+    divider: "or peek at anyone",
+    inputPrefix: "github.com/",
+    inputPlaceholder: "username",
+    chips: ["GitHub", "BOT Chain"],
+    peek: "Peek",
+  },
+  ticker: ["Reading repos…", "Counting languages…", "Sensing the aura…"],
+  card: {
+    stats: { repos: "Repos", followers: "Followers", stars: "Stars", mostStarred: "Most starred" },
+    languages: "Top languages",
+    badges: { verified: "✓ Verified", preview: "Preview", classic: "classic aura" },
+  },
+  save: {
+    save: "Save my Aura on BOT Chain",
+    signInToSave: "Sign in with GitHub to save your own Aura",
+    onlyOwn: "You can only save your own Aura",
+    steps: ["Connect wallet", "Getting your proof…", "Confirm in MetaMask…", "Stamping on BOT Chain…"],
+    success: (id: string | number) => `Aura #${id} is stamped`,
+    viewTx: "View transaction ↗",
+    copyLink: "Copy share link",
+    shareX: "Share on X",
+    copied: "Link copied",
+    tweet: (title: string, url: string) =>
+      `My GitHub aura: "${title}" ✨ Stamped on @BOTChain_ai — find yours: ${url}`,
+  },
+  how: {
+    eyebrow: "CHOOSE YOUR PATH",
+    title: "Three steps to your aura",
+    steps: [
+      { title: "Sign in", body: "Log in with GitHub. We only read your public profile." },
+      { title: "Reveal", body: "AI turns your repos and languages into a personality card." },
+      { title: "Stamp", body: "Save it on BOT Chain as a verified wallet ↔ GitHub link." },
+    ],
+  },
+  gallery: {
+    title: "Aura gallery",
+    subtitle: "Every card here was stamped by its GitHub owner.",
+    empty: "No auras yet — be the first to stamp yours.",
+    loadMore: "Load more",
+    teaser: "See all auras →",
+    findYours: "Find your own aura",
+  },
+  footer: {
+    eyebrow: "STAMPED ON-CHAIN",
+    typed: (chainId: number) => `Built on BOT Chain · chain ID ${chainId}`,
+    chip: "BOT Chain",
+    explorer: "View on explorer ↗",
+    copyright: "© GitAura 2026",
+    disclaimer: "Not affiliated with GitHub",
+  },
+  errors: {
+    installMetaMask: "Install MetaMask",
+    switchChain: "Switch to BOT Chain",
+    loginFailed: "GitHub sign-in didn't finish — try again",
+    tryAgain: "Try again",
+    userNotFound: "No GitHub user by that name",
+    githubRateLimited: "GitHub needs a breather — try again in a few minutes",
+    invalidUsername: "Enter a GitHub username",
+    proofExpired: "Your proof expired — try saving again",
+    txRejected: "Transaction cancelled",
+    txFailed: "Something went wrong on-chain — try again",
+    txPending: "Still stamping… this can take a moment",
+    serverRateLimited: "Slow down a little — try again later",
+    auraNotFound: "Aura not found",
+    galleryFailed: "Couldn't load auras — refresh to try again",
+    retry: "Retry",
+  },
+} as const;

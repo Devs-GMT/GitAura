@@ -11,7 +11,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 3 | Auth GitHub + session | ✅ | 15 test vitest; login → `/api/auth/me` OK di browser; logout 204 → `/me` 401; state palsu → `?login=failed` |
 | 4 | Attestation endpoint + e2e | ✅ | 29 test vitest; e2e testnet: Aura #0 `@gitaura-e2e` tersimpan, tx `0x30f3…9af61` (gas 241 289); `getAura`/`auraIdOf`/event dicek via `cast` |
 | 5 | Stats GitHub + AI + fallback | ✅ | 59 test vitest; curl `/api/aura`: Gemini `gemini-3.5-flash-lite` → `source:"ai"` (1,5–3,7 s, stats asli octocat/sindresorhus); key kosong → `source:"fallback"`; 0 repo → `source:"fresh"`; stats invalid → 400 |
-| 6 | UI shell & design system | ⬜ | |
+| 6 | UI shell & design system | ✅ | landing (nav, hero+PromptBox, marquee, how it works, footer) dicek screenshot headless di 360/375/1440 tanpa scroll horizontal; link footer benar |
 | 7 | Flow utama | ⬜ | |
 | 8 | Gallery & share link | ⬜ | |
 | 9 | Mainnet & live | ⬜ | alamat mainnet: · URL: |
@@ -53,6 +53,11 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 5 · Archetype fallback deterministik: stars ≥100 → Wizard, repo ≥20 → Builder, selain itu Explorer; tanpa bahasa → "The Code Explorer". Teks vibe/traits fallback ditulis baru (UI_COPY tidak mengaturnya)
 - 2026-10-17 · 5 · Zod `/api/aura` membuang field tak dikenal (mis. `bio`) sebelum prompt · cegah prompt injection; test memastikan teks injeksi tidak sampai ke Gemini
 - 2026-10-17 · 5 · Output AI di-`trim()` lalu divalidasi ketat (title ≤80, vibe ≤160, tepat 3 traits ≤24); gagal → fallback · sesuai API_SPEC
+- 2026-10-17 · 6 · Tombol pink (`#E83AD6`) memakai teks `#111` (5,4:1), bukan putih (3,5:1) · DESIGN_SYSTEM §7; eyebrow pink kecil di atas `bg` hanya ~3,1:1 — diterima sesuai desain (label dekoratif), catat untuk audit a11y
+- 2026-10-17 · 6 · Font Geist via `next/font/google` (bukan paket npm `geist`) · font sama, tanpa dependensi tambahan
+- 2026-10-17 · 6 · Teks footer `Built on BOT Chain · chain ID {CHAIN_ID}` mengambil chain dari config (968 di testnet, 677 di mainnet) · UI_COPY menulis 677; nilai mengikuti chain aktif agar tidak menyesatkan di testnet
+- 2026-10-17 · 6 · `AuraCard`/`SaveBar`/`SuccessPanel`/`Toast` dibuat di Fase 7, teaser galeri di Fase 8; Peek di Fase 6 hanya demo ticker · fase 6 = shell; komponen kartu langsung dibangun dengan data nyata
+- 2026-10-17 · 6 · Uji visual: Chrome headless + iframe 360/375px (headless Windows punya lebar jendela minimum ~500px) · screenshot di scratchpad, tidak di-commit
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
@@ -65,5 +70,7 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - [x] Isi `GEMINI_API_KEY` (AI Studio) — terisi, AI teruji di Fase 5
 
 - [ ] Dev tooling: `TaskStop` pada `npm run dev` bisa meninggalkan proses `next` yatim di port 3000 → cek `Get-NetTCPConnection -LocalPort 3000` bila hasil uji aneh
+
+- [ ] Verifikasi animasi ketik footer & ticker di perangkat mobile asli (di iframe headless IntersectionObserver tidak memicu)
 
 ## Bug diketahui
