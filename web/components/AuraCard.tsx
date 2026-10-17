@@ -57,7 +57,7 @@ export function AuraCard({ stats, aura, topLang, badge }: AuraCardProps) {
             alt={`@${handle} avatar`}
             width={72}
             height={72}
-            className="size-[72px] rounded-full bg-preview ring-4 ring-white"
+            className="size-[72px] overflow-hidden rounded-full bg-preview text-[0px] ring-4 ring-white"
           />
           <div className="flex flex-wrap justify-end gap-1.5">
             <Badge kind={badge} />

@@ -32,6 +32,7 @@ Pakai teks ini **persis** (bahasa Inggris). Simpan di `web/lib/copy.ts` sebagai 
 - Stats labels: `Repos` · `Followers` · `Stars` · `Most starred`
 - Languages legend title: `Top languages`
 - Badges: `✓ Verified` · `Preview` · `classic aura`
+- Kartu on-chain (share / galeri): label `Aura #{id}` · `Top language` · `Stamped` (tanggal) · `Owner` (alamat pendek → explorer)
 - Fresh account vibe (0 repo): title `The Fresh Account`, vibe `A blank canvas with main-character energy.`, traits `Just getting started`, `Full of potential`, `First commit loading`
 
 ## Save flow

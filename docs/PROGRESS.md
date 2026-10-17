@@ -12,8 +12,8 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 4 | Attestation endpoint + e2e | ✅ | 29 test vitest; e2e testnet: Aura #0 `@gitaura-e2e` tersimpan, tx `0x30f3…9af61` (gas 241 289); `getAura`/`auraIdOf`/event dicek via `cast` |
 | 5 | Stats GitHub + AI + fallback | ✅ | 59 test vitest; curl `/api/aura`: Gemini `gemini-3.5-flash-lite` → `source:"ai"` (1,5–3,7 s, stats asli octocat/sindresorhus); key kosong → `source:"fallback"`; 0 repo → `source:"fresh"`; stats invalid → 400 |
 | 6 | UI shell & design system | ✅ | landing (nav, hero+PromptBox, marquee, how it works, footer) dicek screenshot headless di 360/375/1440 tanpa scroll horizontal; link footer benar |
-| 7 | Flow utama | 🟨 | 68 test vitest; peek di Chrome (CDP): ticker → kartu AI → "Sign in … to save", 404 → "No GitHub user by that name", 375px tanpa scroll horizontal; **menunggu uji manual MetaMask: sign in → reveal → stamp di testnet** |
-| 8 | Gallery & share link | ⬜ | |
+| 7 | Flow utama | ✅ | 68 test vitest; user stamp lewat UI di testnet: Aura #1 `@adityazulkarnaen` (tx `0x699e…b8`); peek/404/375px dicek via Chrome CDP |
+| 8 | Gallery & share link | ✅ | 72 test; `/a/1` & `/?aura=1` → 200 + `og:title` per aura; id tak ada/invalid → "Aura not found"; dibuka di profil Chrome baru tanpa `window.ethereum` (incognito-setara) + `/gallery` memuat 2 aura dari chain |
 | 9 | Mainnet & live | ⬜ | alamat mainnet: · URL: |
 | 10 | README, demo, submission | ⬜ | |
 
@@ -68,6 +68,12 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 7 · GitHub error jaringan dipetakan ke teks rate-limit GitHub; `/api/aura` gagal (selain 429) → template lokal `source:"fallback"` · UI_COPY tidak punya teks "network error"; jangan improvisasi
 - 2026-10-17 · 7 · Link share: `{SITE}/?aura={id}`; tweet via `twitter.com/intent/tweet` dengan teks persis `COPY.save.tweet` · halaman read-only dibuat Fase 8
 - 2026-10-17 · 7 · /check-states: semua baris UI_COPY §Errors tertangani via `COPY` kecuali `Aura not found` & `Couldn't load auras` (lingkup Fase 8)
+- 2026-10-17 · 8 · Baca kontrak langsung dari browser/server via `JsonRpcProvider` (`lib/chain.ts`) · RPC 968 & 677 mengizinkan CORS `*`; tanpa wallet/login
+- 2026-10-17 · 8 · `/?aura=ID` dirender langsung (bukan redirect) dengan metadata OG yang sama seperti `/a/ID` · crawler share tidak perlu mengikuti redirect
+- 2026-10-17 · 8 · `loadAura` dibungkus `React.cache` (1 RPC untuk metadata + halaman); `/a/[id]` `revalidate = 60` · aura bisa di-stamp ulang
+- 2026-10-17 · 8 · RPC gagal pada halaman share → "Couldn't load auras — refresh to try again" (bukan "Aura not found") · bedakan data tidak ada vs jaringan; not-found tetap HTTP 200 + `robots: noindex`
+- 2026-10-17 · 8 · Kartu on-chain hanya menampilkan data tersimpan (title, vibe, topLang, owner, tanggal) — traits & stats tidak disimpan di kontrak · label baru ditambahkan ke UI_COPY
+- 2026-10-17 · 8 · Teaser 6 aura terbaru di landing (server component dalam `Suspense`) + `SiteHeader` dipakai bersama landing/galeri/share · DESIGN_SYSTEM §5
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
@@ -83,6 +89,6 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 
 - [ ] Verifikasi animasi ketik footer & ticker di perangkat mobile asli (di iframe headless IntersectionObserver tidak memicu)
 
-- [ ] Uji manual Fase 7 dengan MetaMask: tanpa MetaMask, jaringan salah (switch/add chain 968), tx ditolak, tx sukses → Aura #ID + Verified, copy link, share X
+- [x] Uji manual Fase 7: stamp sukses via UI (Aura #1). Belum dicoba eksplisit: tx ditolak, jaringan salah, copy link/share X — cek sekilas sebelum go-live
 
 ## Bug diketahui

@@ -32,6 +32,12 @@ export const COPY = {
     stats: { repos: "Repos", followers: "Followers", stars: "Stars", mostStarred: "Most starred" },
     languages: "Top languages",
     badges: { verified: "✓ Verified", preview: "Preview", classic: "classic aura" },
+    onchain: {
+      id: (id: number | string) => `Aura #${id}`,
+      topLanguage: "Top language",
+      stamped: "Stamped",
+      owner: "Owner",
+    },
   },
   save: {
     save: "Save my Aura on BOT Chain",
