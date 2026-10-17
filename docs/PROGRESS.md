@@ -7,7 +7,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 |---|---|---|---|
 | 0 | Scaffold | ✅ | Next 15.5 + Tailwind v4, Foundry + OZ v5.7.0; `forge build`, lint, typecheck, test, `npm run dev` OK |
 | 1 | Smart contract + test | ✅ | `forge test -vv`: 25/25 hijau (matrix §4 #1–#11 + edge case + fuzz); `Deploy.s.sol` tersimulasi lokal |
-| 2 | Deploy testnet | 🟨 | alamat: _(menunggu broadcast manual)_ · attester test `0x50b4Fd0E7485299ce250b275e24BA91564EAc848` · deployer `0x5219fFbF9A44F96A8931A50A31021E4724518735` |
+| 2 | Deploy testnet | ✅ | alamat: [`0x54004efF59C672BB94BD662741589e9Ae6ECFcA8`](https://scan.bohr.life/address/0x54004efF59C672BB94BD662741589e9Ae6ECFcA8) · tx `0x2a42…f976` · attester test `0x50b4Fd0E7485299ce250b275e24BA91564EAc848` · deployer `0x5219fFbF9A44F96A8931A50A31021E4724518735` |
 | 3 | Auth GitHub + session | ⬜ | |
 | 4 | Attestation endpoint + e2e | ⬜ | |
 | 5 | Stats GitHub + AI + fallback | ⬜ | |
@@ -32,6 +32,7 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 1 · Update di tempat tidak mengubah `username` (key sama); `topLang` tidak divalidasi ≤19 · tidak diminta spec; UI memetakan indeks tak dikenal → 0
 - 2026-10-17 · 2 · `rpc_endpoints` `bohr`/`botchain` di `foundry.toml`; ABI diekspor via `npm run abi` (`web/scripts/export-abi.mjs` → `web/lib/abi.ts`, `as const`) · satu sumber dari artefak Foundry, regenerasi tiap kontrak berubah
 - 2026-10-17 · 2 · Simulasi deploy ke 968 (`--sender` deployer, tanpa broadcast): ~2,23 jt gas, ~0,045 token · saldo deployer testnet 10
+- 2026-10-17 · 2 · Deploy testnet sukses; dicek via RPC: bytecode 7686 B, `attester()` = attester test, `total()` = 0, explorer 200 · `NEXT_PUBLIC_CONTRACT_ADDRESS` diisi di `web/.env.local` (lokal saja)
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
