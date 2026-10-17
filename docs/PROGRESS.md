@@ -10,7 +10,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 2 | Deploy testnet | ✅ | alamat: [`0x54004efF59C672BB94BD662741589e9Ae6ECFcA8`](https://scan.bohr.life/address/0x54004efF59C672BB94BD662741589e9Ae6ECFcA8) · tx `0x2a42…f976` · attester test `0x50b4Fd0E7485299ce250b275e24BA91564EAc848` · deployer `0x5219fFbF9A44F96A8931A50A31021E4724518735` |
 | 3 | Auth GitHub + session | ✅ | 15 test vitest; login → `/api/auth/me` OK di browser; logout 204 → `/me` 401; state palsu → `?login=failed` |
 | 4 | Attestation endpoint + e2e | ✅ | 29 test vitest; e2e testnet: Aura #0 `@gitaura-e2e` tersimpan, tx `0x30f3…9af61` (gas 241 289); `getAura`/`auraIdOf`/event dicek via `cast` |
-| 5 | Stats GitHub + AI + fallback | ⬜ | |
+| 5 | Stats GitHub + AI + fallback | ✅ | 59 test vitest; curl `/api/aura`: Gemini `gemini-3.5-flash-lite` → `source:"ai"` (1,5–3,7 s, stats asli octocat/sindresorhus); key kosong → `source:"fallback"`; 0 repo → `source:"fresh"`; stats invalid → 400 |
 | 6 | UI shell & design system | ⬜ | |
 | 7 | Flow utama | ⬜ | |
 | 8 | Gallery & share link | ⬜ | |
@@ -47,6 +47,12 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 4 · `tsconfig` target ES2017 → ES2020; `tsx` sebagai devDep (`--conditions=react-server` agar `server-only` jadi no-op di script) · BigInt literal & menjalankan lib server dari CLI
 - 2026-10-17 · 4 · Aura #0 di kontrak testnet adalah data uji `@gitaura-e2e` (owner deployer) · gallery Fase 8 akan menampilkannya; deploy ulang testnet/mainnet tidak terpengaruh
 - 2026-10-17 · 5 · **Provider AI: Google Gemini (free tier)**, bukan Anthropic. REST `generateContent` via `fetch` (tanpa SDK; `@anthropic-ai/sdk` dihapus). Env `GEMINI_API_KEY` + `GEMINI_MODEL` (default `gemini-3.5-flash-lite`, alternatif `gemini-3.8-flash`) · permintaan user (gratis); PRD tidak menetapkan provider. Free tier: data request boleh dipakai Google → hanya ringkasan stats publik yang dikirim
+- 2026-10-17 · 5 · `source` punya nilai ketiga `"fresh"` (0 repo → aura "The Fresh Account" dari UI_COPY, tanpa memanggil AI) · Fresh bukan "classic aura"; UI Fase 7: badge `classic aura` hanya untuk `"fallback"`
+- 2026-10-17 · 5 · Fork diabaikan untuk bahasa/stars/aktivitas; `publicRepos` dari profil · bahasa repo fork bukan karya user
+- 2026-10-17 · 5 · Hanya 1 halaman repo (100 terbaru, `sort=updated`) sesuai BUILD_PLAN §2.4 · akun >100 repo: stars/bahasa dihitung dari 100 repo terbaru (batasan MVP, catat di README)
+- 2026-10-17 · 5 · Archetype fallback deterministik: stars ≥100 → Wizard, repo ≥20 → Builder, selain itu Explorer; tanpa bahasa → "The Code Explorer". Teks vibe/traits fallback ditulis baru (UI_COPY tidak mengaturnya)
+- 2026-10-17 · 5 · Zod `/api/aura` membuang field tak dikenal (mis. `bio`) sebelum prompt · cegah prompt injection; test memastikan teks injeksi tidak sampai ke Gemini
+- 2026-10-17 · 5 · Output AI di-`trim()` lalu divalidasi ketat (title ≤80, vibe ≤160, tepat 3 traits ≤24); gagal → fallback · sesuai API_SPEC
 
 ## TODO / terbuka
 - [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
@@ -56,6 +62,8 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - [ ] Boilerplate create-next-app (`web/app/page.tsx`, `web/public/*.svg`, `web/README.md`) diganti di Fase 6
 - [ ] Drive C hampir penuh (~0,6 GB): npm install memakai `--cache D:/npm-cache`
 
-- [ ] Isi `GEMINI_API_KEY` (AI Studio) untuk uji AI sungguhan di Fase 5; tanpa key → fallback
+- [x] Isi `GEMINI_API_KEY` (AI Studio) — terisi, AI teruji di Fase 5
+
+- [ ] Dev tooling: `TaskStop` pada `npm run dev` bisa meninggalkan proses `next` yatim di port 3000 → cek `Get-NetTCPConnection -LocalPort 3000` bila hasil uji aneh
 
 ## Bug diketahui
