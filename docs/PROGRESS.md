@@ -14,7 +14,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 6 | UI shell & design system | ✅ | landing (nav, hero+PromptBox, marquee, how it works, footer) dicek screenshot headless di 360/375/1440 tanpa scroll horizontal; link footer benar |
 | 7 | Flow utama | ✅ | 68 test vitest; user stamp lewat UI di testnet: Aura #1 `@adityazulkarnaen` (tx `0x699e…b8`); peek/404/375px dicek via Chrome CDP |
 | 8 | Gallery & share link | ✅ | 72 test; `/a/1` & `/?aura=1` → 200 + `og:title` per aura; id tak ada/invalid → "Aura not found"; dibuka di profil Chrome baru tanpa `window.ethereum` (incognito-setara) + `/gallery` memuat 2 aura dari chain |
-| 9 | Mainnet & live | ⬜ | alamat mainnet: · URL: |
+| 9 | Mainnet & live | 🟨 | /security-check: 9/9 lolos; native currency dikonfirmasi; **menunggu langkah manual: attester prod, deploy 677, OAuth App prod, Vercel + domain** · alamat mainnet: · URL: |
 | 10 | README, demo, submission | ⬜ | |
 
 Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
@@ -74,9 +74,12 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-17 · 8 · RPC gagal pada halaman share → "Couldn't load auras — refresh to try again" (bukan "Aura not found") · bedakan data tidak ada vs jaringan; not-found tetap HTTP 200 + `robots: noindex`
 - 2026-10-17 · 8 · Kartu on-chain hanya menampilkan data tersimpan (title, vibe, topLang, owner, tanggal) — traits & stats tidak disimpan di kontrak · label baru ditambahkan ke UI_COPY
 - 2026-10-17 · 8 · Teaser 6 aura terbaru di landing (server component dalam `Suspense`) + `SiteHeader` dipakai bersama landing/galeri/share · DESIGN_SYSTEM §5
+- 2026-10-18 · 9 · /security-check 9/9 ✅ (secret: hanya key anvil #0 publik + vektor test; server-only di lib env/session/oauth/attest/ai; token GitHub tidak keluar dari `fetchGitHubIdentity`; digest TS==Sol; lowercase; cookie httpOnly/secure(prod)/lax + state timingSafeEqual; origin+rate limit di aura/attest; tidak ada chain/alamat hardcode di luar config; AI zod in/out)
+- 2026-10-18 · 9 · `npm audit --omit=dev`: 1 high + 1 moderate di PostCSS bawaan Next 15 (fix hanya di Next 16 = major) · PostCSS hanya memproses CSS kita saat build, bukan input user → risiko rendah; tetap di Next 15.5.28 (versi 15 terbaru), tinjau upgrade Next 16 setelah submission
+- 2026-10-18 · 9 · Belum ada security headers (hanya `X-Powered-By`) · opsional sebelum go-live: `poweredByHeader:false` + X-Frame-Options/Referrer-Policy/X-Content-Type-Options di `next.config.ts`
 
 ## TODO / terbuka
-- [ ] Konfirmasi native currency BOT Chain (nama, simbol, decimals)
+- [x] Konfirmasi native currency BOT Chain → `BOT`/`BOT`/18 (mainnet & testnet, dari envs.js explorer resmi, 2026-10-18)
 - [ ] Putuskan: tandatangani title/vibe? (CONTRACT_SPEC §6)
 - [ ] Logo BOT Chain resmi untuk chip footer (SVG)
 - [x] Konfirmasi versi EVM BOT Chain → Cancun-compatible, `evm_version = "cancun"` (fase 1)

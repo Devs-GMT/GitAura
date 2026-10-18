@@ -24,9 +24,11 @@ Simpan key deployer dengan keystore: `cast wallet import deployer --interactive`
 | Chain ID | 968 (`0x3c8`) | 677 (`0x2a5`) |
 | RPC | https://rpc.bohr.life | https://rpc.botchain.ai |
 | Explorer | https://scan.bohr.life | https://scan.botchain.ai |
-| Native currency | ⚠️ TODO konfirmasi | ⚠️ TODO konfirmasi |
+| Native currency | `BOT` (BOT, 18 decimals) | `BOT` (BOT, 18 decimals) |
 
-Isi `nativeCurrency` di `web/lib/config.ts` setelah dikonfirmasi dari dokumen resmi BOT Chain.
+> Sumber: `NEXT_PUBLIC_NETWORK_CURRENCY_*` di `/assets/envs.js` explorer resmi (dicek 2026-10-18). Catatan: chain ID **968** juga terdaftar di chainlist atas nama jaringan lain ("Datagram", DGRAM) — MetaMask bisa menampilkan peringatan "network details don't match" saat menambah testnet; aman diabaikan untuk testnet. Chain 677 belum terdaftar di chainlist.
+
+`nativeCurrency` di `web/lib/config.ts` sudah diisi sesuai tabel di atas.
 
 ## 4. GitHub OAuth Apps
 GitHub → Settings → Developer settings → OAuth Apps → New.

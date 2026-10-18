@@ -6,7 +6,7 @@ export type ChainConfig = {
   name: string;
   rpcUrl: string;
   explorerUrl: string;
-  // TODO(PROGRESS): konfirmasi nama/simbol/decimals native currency BOT Chain.
+  // Dikonfirmasi 2026-10-18 dari envs.js explorer resmi (scan.botchain.ai / scan.bohr.life): BOT / BOT / 18.
   nativeCurrency: { name: string; symbol: string; decimals: number };
 };
 
