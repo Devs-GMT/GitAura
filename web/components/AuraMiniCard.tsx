@@ -11,7 +11,7 @@ export function AuraMiniCard({ aura }: { aura: OnchainAura }) {
       href={`/a/${aura.id}`}
       className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface shadow-card transition-transform duration-200 ease-out hover:-translate-y-0.5"
     >
-      <span className="h-3 w-full" style={{ background: `linear-gradient(90deg, ${lang.from}, ${lang.to})` }} aria-hidden="true" />
+      <span className="h-3 w-full" style={{ background: lang.from }} aria-hidden="true" />
       <span className="flex flex-1 flex-col gap-3 p-5">
         <span className="flex items-center justify-between gap-3">
           <span className="flex min-w-0 items-center gap-2.5">

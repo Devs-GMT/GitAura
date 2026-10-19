@@ -82,7 +82,8 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-19 · 9 · `forge verify-contract --verifier blockscout` ke scan.botchain.ai diblokir Cloudflare WAF ("you have been blocked") · tidak diakali; dibuat `contracts/out/GitAura.standard-input.json` (gitignored) untuk upload manual di UI explorer
 - 2026-10-20 · 9 · Bar bahasa: sisa di luar top 3 ditampilkan sebagai segmen "Other" (flex-grow proporsional) · share dihitung dari semua bahasa sehingga top 3 tidak pernah 100%
 - 2026-10-20 · 9 · Live di `https://git-aura-five.vercel.app` (chain 677). Stamp pertama gagal `InvalidProof()` (0x09bde339) → `ATTESTER_PRIVATE_KEY` di Vercel bukan key `0xCF43…`; user diminta mengganti + redeploy
-- 2026-10-20 · 9 · Logo: `LogoMark` (tile tinta + kilau 4 sudut pink + kilau kecil kuning), juga `app/icon.svg` menggantikan favicon bawaan Next
+- 2026-10-20 · 9 · ~~Logo `LogoMark` (tile + kilau)~~ → **logo = inisial "GA." bold pink** (permintaan user); favicon `app/icon.svg` = tile pink + "GA." putih (teks pink di latar transparan tak terbaca di 16px)
+- 2026-10-20 · 9 · Banner kartu (AuraCard, OnchainAuraCard, strip galeri, RevealMock) = **satu warna solid** `LANGUAGES[i].from`, tanpa gradient & grain (permintaan user) · kolom `to` di tabel topLang kini cadangan
 - 2026-10-20 · 9 · Menu wallet di navbar: Copy address · Switch wallet (`wallet_requestPermissions` → pemilih akun) · Disconnect (`wallet_revokePermissions` + flag `ga_wallet_off` di localStorage agar tidak auto-connect) · diuji via CDP dengan provider EIP-1193 palsu; copy baru di UI_COPY
 
 ## TODO / terbuka

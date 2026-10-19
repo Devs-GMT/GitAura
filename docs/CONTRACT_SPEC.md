@@ -100,7 +100,7 @@ Catatan: `username` di sini sudah lowercase (dari session). `chainId` dan `contr
 Helper test: buat signature dengan `vm.sign(attesterPk, MessageHashUtils.toEthSignedMessageHash(digest))`, gabungkan `abi.encodePacked(r, s, v)`.
 
 ## 5. Tabel `topLang` (sumber tunggal; salin ke `web/lib/config.ts`)
-| idx | Bahasa | Gradient (from → to) |
+| idx | Bahasa | Warna (`from` = warna banner kartu; `to` cadangan, tidak dipakai sejak 2026-10-20) |
 |---|---|---|
 | 0 | Other | `#5E5B55 → #111111` |
 | 1 | TypeScript | `#3178C6 → #E83AD6` |

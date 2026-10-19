@@ -18,7 +18,7 @@
 1. **Landing** — eyebrow mono pink "READ ANY DEVELOPER'S AURA", headline "What's your GitHub aura?", prompt-box card dengan dua jalur: utama [Sign in with GitHub], sekunder input "github.com/…" + [Peek] (preview saja).
 2. **GitHub login** — halaman authorize GitHub → kembali ke GitAura dengan chip avatar "Signed in as @username" + [Sign out].
 3. **Loading** — prompt box: "Reading repos… → Counting languages… → Sensing the aura…".
-4. **Aura card** — avatar, @username, title AI, vibe satu baris, 3 trait chips, stats (repos · followers · bar top 3 bahasa · repo paling banyak star), gradient dari bahasa teratas.
+4. **Aura card** — avatar, @username, title AI, vibe satu baris, 3 trait chips, stats (repos · followers · bar top 3 bahasa · repo paling banyak star), banner satu warna dari bahasa teratas.
 5. **Save** — Connect MetaMask → [Save my Aura on BOT Chain] → situs minta signed proof ke server → MetaMask → sukses: Aura #ID + ✓ Verified, link tx, [Copy share link], [Share on X].
 6. **Gallery** — grid semua aura tersimpan (terbaru dulu); `?aura=12` membuka satu kartu read-only tanpa wallet/login.
 

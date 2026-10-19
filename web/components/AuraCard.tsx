@@ -43,19 +43,8 @@ export function AuraCard({ stats, aura, topLang, badge }: AuraCardProps) {
 
   return (
     <article className="animate-card-in overflow-hidden rounded-card border border-border bg-surface shadow-card">
-      <div
-        className="relative h-28 md:h-32"
-        style={{ background: `linear-gradient(135deg, ${lang.from}, ${lang.to})` }}
-        aria-hidden="true"
-      >
-        {/* grain halus */}
-        <svg className="absolute inset-0 size-full opacity-[0.18] mix-blend-overlay">
-          <filter id="aura-grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#aura-grain)" />
-        </svg>
-      </div>
+      {/* Banner satu warna dari bahasa teratas (tabel topLang, kolom `from`). */}
+      <div className="h-28 md:h-32" style={{ background: lang.from }} aria-hidden="true" />
 
       <div className="px-6 pb-6 md:px-8 md:pb-8">
         <div className="relative z-10 -mt-10 flex items-end justify-between gap-3">

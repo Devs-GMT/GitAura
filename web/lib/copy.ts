@@ -8,7 +8,7 @@ export const COPY = {
     ogAura: (title: string, username: string) => `${title} — @${username} · GitAura`,
   },
   nav: {
-    logo: "GitAura",
+    logo: "GA.",
     connectWallet: "Connect wallet",
     avatarChip: (username: string) => `@${username}`,
     signOut: "Sign out",

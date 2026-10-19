@@ -46,21 +46,21 @@ Font via `next/font` (paket `geist`). Body `bg-bg text-ink`.
 ## 4. Komponen
 | Komponen | Spesifikasi |
 |---|---|
-| `NavBar` | Sticky, `bg-bg/80 backdrop-blur`, tinggi 64px. Kiri: logo (wordmark "GitAura" + titik pink). Kanan: `AvatarChip` (saat login) + `WalletButton` (pill pink) + hamburger (< md, buka sheet berisi Gallery, How it works, Sign out). |
+| `NavBar` | Sticky, `bg-bg/80 backdrop-blur`, tinggi 64px. Kiri: logo inisial **"GA."** bold, warna `accent` (favicon: tile pink + "GA." putih, `app/icon.svg`). Kanan: `AvatarChip` (saat login) + `WalletButton` (pill pink) + hamburger (< md, buka sheet berisi Gallery, How it works, Sign out). |
 | `PromptBox` | Card `surface`, radius-card, border 1px `border`, `shadow-card` + `shadow-glow`. Padding 24/32px. Slot: aksi utama, divider, input baris. Mode `loading` menampilkan `TickerText`. |
 | `GitHubButton` | Hitam `#111`, teks putih, radius 14px, tinggi 52px, ikon Octocat mark resmi (SVG dari GitHub logo guidelines, tidak diubah warnanya selain hitam/putih). |
 | `Divider` | Garis tipis dengan label tengah mono kecil "or peek at anyone". |
 | `PeekInput` | Prefix statis `github.com/` (muted) + input; chip "GitHub" & "BOT Chain" (outline, mono kecil); tombol pink [Peek]. Enter = submit. |
 | `Chip` | Pill, border `border`, bg `surface`, 13px. Varian `accent` (outline pink). |
 | `Badge` | `Verified`: outline pink + ✓; `Preview`: bg `#ECEAE5` teks muted; `Classic`: outline muted, label "classic aura". |
-| `AuraCard` | Radius-card, header gradient dari `topLang` (tabel di CONTRACT_SPEC §5) dengan grain halus; avatar 72px ring putih; @username mono; title besar; vibe muted; 3 `Chip` traits; stats grid 2×2 (repos, followers, stars, most-starred); bar bahasa bertumpuk (3 warna) dengan legend. Rasio ramah screenshot (≈ 4:5 di mobile). |
+| `AuraCard` | Radius-card, header **satu warna solid** dari `topLang` (kolom `from` di tabel CONTRACT_SPEC §5), tanpa gradient; avatar 72px ring putih; @username mono; title besar; vibe muted; 3 `Chip` traits; stats grid 2×2 (repos, followers, stars, most-starred); bar bahasa bertumpuk (3 warna) dengan legend. Rasio ramah screenshot (≈ 4:5 di mobile). |
 | `SaveBar` | Di bawah AuraCard: status langkah (Connect → Prove → Sign → Confirmed) + tombol utama. |
 | `SuccessPanel` | "Aura #ID" + Verified badge, link tx (explorer), [Copy share link], [Share on X]. |
 | `TickerText` | Mono, ganti kalimat tiap ~900ms dengan fade + caret ▉ berkedip. |
 | `PixelSparkles` | SVG pixel-art buatan sendiri: gugus bintang kilau 4 sudut (13×13 kuning, 7×7 oranye, 5×5 pink), tiap pixel diarsir terang/dasar/gelap (kesan permata berfaset), garis pixel tipis; sparkle kecil berkedip (`animate-twinkle`, mati saat reduced-motion). Prop `corner`, `size`, `rotate`. Absolute, `pointer-events-none`, mengintip ±12% dari tepi. (Menggantikan kubus `Voxels`, 2026-10-17.) |
 | `LangMarquee` | Card rounded berisi baris nama bahasa (mono, muted) bergulir pelan (40s loop), mask fade di kiri-kanan. |
 | `HowItWorks` | Eyebrow "CHOOSE YOUR PATH" + H2, lalu 3 `StepCard` bergaya Relume (split card, sisi visual bergantian). Teks: ikon tile pink, eyebrow, heading 28→36px, body muted, CTA, garis, 3 fitur (ikon kotak + judul + 1 baris muted). Visual: panel berwarna (kuning / pink / oranye — pakai warna aksen & voxel saja) dengan grid putih 24px, tepi "pixel" bertangga ke sisi teks, mockup buatan sendiri (`SignInMock`, `RevealMock`, `StampMock`) terpotong keluar panel. Mobile: visual di atas, teks di bawah. |
-| `GalleryGrid` | 1 / 2 / 3 kolom; kartu mini (gradient strip, avatar, title, @username, Verified). Skeleton saat load. |
+| `GalleryGrid` | 1 / 2 / 3 kolom; kartu mini (strip warna solid, avatar, title, @username, Verified). Skeleton saat load. |
 | `Footer` | Lihat §6. |
 | `Toast` | Pojok bawah, untuk "Link copied", error tx. |
 

@@ -13,7 +13,7 @@ export function RevealMock() {
   return (
     <div className="relative h-full w-full">
       <div className="absolute right-6 top-8 w-[300px] max-w-[calc(100%-1.5rem)] overflow-hidden rounded-[24px] border border-border bg-surface shadow-card md:-right-12 md:top-14 md:w-[440px] md:max-w-none">
-        <div className="h-24" style={{ background: `linear-gradient(135deg, ${TS.from}, ${TS.to})` }} />
+        <div className="h-24" style={{ background: TS.from }} />
         <div className="px-6 pb-6">
           <div className="-mt-9 flex items-end justify-between">
             <span className="size-[72px] rounded-full bg-gradient-to-br from-voxel-yellow to-voxel-orange ring-4 ring-surface" />

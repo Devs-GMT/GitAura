@@ -11,7 +11,7 @@ export function OnchainAuraCard({ aura }: { aura: OnchainAura }) {
   const lang = languageAt(aura.topLang);
   return (
     <article className="animate-card-in overflow-hidden rounded-card border border-border bg-surface shadow-card">
-      <div className="relative h-28 md:h-32" style={{ background: `linear-gradient(135deg, ${lang.from}, ${lang.to})` }} aria-hidden="true">
+      <div className="relative h-28 md:h-32" style={{ background: lang.from }} aria-hidden="true">
         <span className="absolute right-4 top-4 rounded-pill bg-white/85 px-3 py-1 font-mono text-[12px] font-medium text-ink">
           {COPY.card.onchain.id(aura.id)}
         </span>

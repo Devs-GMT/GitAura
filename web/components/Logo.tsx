@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { COPY } from "@/lib/copy";
-import { LogoMark } from "./LogoMark";
 
+/** Logo = inisial "GA." warna aksen (UI_COPY §Nav). */
 export function Logo() {
   return (
-    <Link href="/" className="inline-flex items-center gap-2 text-[20px] font-semibold tracking-[-0.02em]" aria-label="GitAura home">
-      <LogoMark className="size-7" />
+    <Link href="/" className="text-[24px] font-bold leading-none tracking-[-0.04em] text-accent" aria-label="GitAura home">
       {COPY.nav.logo}
     </Link>
   );

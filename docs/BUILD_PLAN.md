@@ -148,7 +148,7 @@ Dua GitHub OAuth App: **dev** (callback `http://localhost:3000/api/auth/github/c
 ### 2.4 Stats GitHub (di browser, tanpa key)
 - `GET api.github.com/users/{name}` + `/users/{name}/repos?per_page=100&sort=updated`
 - Hitung: jumlah repo, followers, top 3 bahasa (berdasar jumlah repo per `language`), total stars, most-starred repo.
-- `topLang` (uint8) = indeks ke array bahasa tetap di `lib/config.ts` (mis. 0=Other, 1=TypeScript, 2=JavaScript, 3=Python, 4=Rust, 5=Go, …). Array yang sama dipakai untuk gradient kartu.
+- `topLang` (uint8) = indeks ke array bahasa tetap di `lib/config.ts` (mis. 0=Other, 1=TypeScript, 2=JavaScript, 3=Python, 4=Rust, 5=Go, …). Array yang sama dipakai untuk warna banner kartu.
 - 404 → "No GitHub user by that name"; 0 repo → aura "Fresh account"; 403 → "GitHub needs a breather — try again in a few minutes".
 
 ### 2.5 Prompt AI
@@ -169,7 +169,7 @@ System: playful, ramah, **tidak pernah menghina**, output **hanya JSON** `{ "tit
   - saat loading, prompt-box menampilkan teks berjalan: "Reading repos… → Counting languages… → Sensing the aura…"
 - **Nav:** logo kiri; kanan: chip avatar GitHub (saat login) + [Sign out], pill pink **[Connect wallet]** (alamat pendek setelah connect), hamburger di mobile.
 - **Badge:** `✓ Verified` (outline pink) untuk kartu tersimpan; `Preview` (abu) untuk kartu peek; `classic aura` untuk fallback.
-- **Aura card:** avatar, @username, title AI, vibe satu baris, 3 trait chips, stats (repos · followers · bar top 3 bahasa · repo paling banyak star), gradient dari bahasa teratas.
+- **Aura card:** avatar, @username, title AI, vibe satu baris, 3 trait chips, stats (repos · followers · bar top 3 bahasa · repo paling banyak star), banner satu warna dari bahasa teratas.
 - **Dekorasi:** gugus bintang kilau 4 sudut ala pixel-art (kuning/oranye + sedikit pink) — **SVG buatan sendiri** (`PixelSparkles`), mengintip dari tepi hero & sudut footer. (Awalnya kubus voxel; diganti 2026-10-17.)
 - **Logo strip:** card rounded dengan marquee lambat berisi nama bahasa (TypeScript, Rust, Python…).
 - **How it works:** eyebrow "CHOOSE YOUR PATH" → 3 langkah: Sign in → Reveal → Stamp.
