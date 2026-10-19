@@ -19,12 +19,20 @@ type AuraCardProps = {
 
 const fmt = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
 
+const OTHER_COLOR = "#B9B4AB";
+
 function langColor(name: string): string {
   return LANGUAGES.find((l) => l.name === name)?.from ?? "#5E5B55";
 }
 
 export function AuraCard({ stats, aura, topLang, badge }: AuraCardProps) {
   const lang = languageAt(topLang);
+  // share = porsi dari SEMUA repo berbahasa; sisa di luar top 3 ditampilkan sebagai "Other" agar bar = 100%.
+  const rest = 1 - stats.topLanguages.reduce((s, l) => s + l.share, 0);
+  const segments = [
+    ...stats.topLanguages.map((l) => ({ ...l, color: langColor(l.name) })),
+    ...(rest >= 0.01 ? [{ name: LANGUAGES[0].name, share: rest, color: OTHER_COLOR }] : []),
+  ];
   const handle = stats.displayLogin || stats.login;
   const statItems = [
     [COPY.card.stats.repos, fmt.format(stats.publicRepos)],
@@ -98,15 +106,16 @@ export function AuraCard({ stats, aura, topLang, badge }: AuraCardProps) {
         {stats.topLanguages.length > 0 && (
           <div className="mt-6">
             <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted">{COPY.card.languages}</p>
-            <div className="mt-2 flex h-2.5 overflow-hidden rounded-pill bg-border">
-              {stats.topLanguages.map((l) => (
-                <span key={l.name} style={{ width: `${Math.max(l.share * 100, 4)}%`, background: langColor(l.name) }} />
+            <div className="mt-2 flex h-2.5 gap-px overflow-hidden rounded-pill bg-border">
+              {segments.map((l) => (
+                // flex-grow proporsional → total selalu 100%; min 4px agar bahasa kecil tetap terlihat.
+                <span key={l.name} className="min-w-1" style={{ flexGrow: l.share, background: l.color }} />
               ))}
             </div>
             <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[12px] text-muted">
-              {stats.topLanguages.map((l) => (
+              {segments.map((l) => (
                 <li key={l.name} className="inline-flex items-center gap-1.5">
-                  <span className="size-2 rounded-full" style={{ background: langColor(l.name) }} />
+                  <span className="size-2 rounded-full" style={{ background: l.color }} />
                   {l.name} {Math.round(l.share * 100)}%
                 </li>
               ))}
