@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { COPY } from "@/lib/copy";
 import { Logo } from "./Logo";
+import { WalletMenu } from "./WalletMenu";
 
 export type NavUser = { login: string; avatar: string };
 
@@ -13,9 +14,11 @@ type NavBarProps = {
   walletLabel?: string;
   onWalletClick?: () => void;
   onSignOut?: () => void;
+  /** Ada saat wallet tersambung di chain benar → pill membuka menu (copy / switch / disconnect). */
+  walletMenu?: React.ComponentProps<typeof WalletMenu> | null;
 };
 
-export function NavBar({ user, walletLabel = COPY.nav.connectWallet, onWalletClick, onSignOut }: NavBarProps) {
+export function NavBar({ user, walletLabel = COPY.nav.connectWallet, onWalletClick, onSignOut, walletMenu }: NavBarProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -53,13 +56,17 @@ export function NavBar({ user, walletLabel = COPY.nav.connectWallet, onWalletCli
             </div>
           )}
 
-          <button
-            type="button"
-            onClick={onWalletClick}
-            className="inline-flex h-9 items-center rounded-pill bg-accent px-4 text-[14px] font-semibold text-white transition-[filter] duration-200 ease-out hover:brightness-95"
-          >
-            <span className={walletLabel.startsWith("0x") ? "font-mono" : ""}>{walletLabel}</span>
-          </button>
+          {walletMenu ? (
+            <WalletMenu {...walletMenu} />
+          ) : (
+            <button
+              type="button"
+              onClick={onWalletClick}
+              className="inline-flex h-9 items-center rounded-pill bg-accent px-4 text-[14px] font-semibold text-white transition-[filter] duration-200 ease-out hover:brightness-95"
+            >
+              <span className={walletLabel.startsWith("0x") ? "font-mono" : ""}>{walletLabel}</span>
+            </button>
+          )}
 
           <button
             type="button"

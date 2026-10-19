@@ -14,7 +14,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 6 | UI shell & design system | ✅ | landing (nav, hero+PromptBox, marquee, how it works, footer) dicek screenshot headless di 360/375/1440 tanpa scroll horizontal; link footer benar |
 | 7 | Flow utama | ✅ | 68 test vitest; user stamp lewat UI di testnet: Aura #1 `@adityazulkarnaen` (tx `0x699e…b8`); peek/404/375px dicek via Chrome CDP |
 | 8 | Gallery & share link | ✅ | 72 test; `/a/1` & `/?aura=1` → 200 + `og:title` per aura; id tak ada/invalid → "Aura not found"; dibuka di profil Chrome baru tanpa `window.ethereum` (incognito-setara) + `/gallery` memuat 2 aura dari chain |
-| 9 | Mainnet & live | 🟨 | ✅ kontrak mainnet live (attester `0xCF43…25ea`, tx `0xd191…4db3`, 1 715 340 gas = 0,0343 BOT); source belum terverifikasi (CLI diblokir Cloudflare → upload manual); **menunggu: Vercel + OAuth App prod + domain** · alamat mainnet: [`0x54004efF59C672BB94BD662741589e9Ae6ECFcA8`](https://scan.botchain.ai/address/0x54004efF59C672BB94BD662741589e9Ae6ECFcA8) · URL: |
+| 9 | Mainnet & live | 🟨 | ✅ web live di git-aura-five.vercel.app (chain 677); ✅ kontrak mainnet live (attester `0xCF43…25ea`, tx `0xd191…4db3`, 1 715 340 gas = 0,0343 BOT); source belum terverifikasi (CLI diblokir Cloudflare → upload manual); **menunggu: Vercel + OAuth App prod + domain** · alamat mainnet: [`0x54004efF59C672BB94BD662741589e9Ae6ECFcA8`](https://scan.botchain.ai/address/0x54004efF59C672BB94BD662741589e9Ae6ECFcA8) · URL: |
 | 10 | README, demo, submission | ⬜ | |
 
 Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
@@ -80,6 +80,10 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-19 · 9 · Attester produksi = akun MetaMask terpisah `0xCF43…25ea` (≠ deployer, ≠ attester testnet, tanpa saldo) · key hanya disimpan di env Vercel; alamat dikunci `immutable` di kontrak mainnet. Simulasi: deploy sebagai tx pertama deployer di 677 → alamat sama dengan testnet `0x54004efF…FcA8`
 - 2026-10-19 · 9 · Deploy mainnet 677 sukses (blok 27231579); dicek via RPC: bytecode 7686 B, `attester()` = `0xCF43…25ea`, `total()` = 0, explorer 200. Alamat sama dengan testnet karena deploy = tx pertama deployer (nonce 0)
 - 2026-10-19 · 9 · `forge verify-contract --verifier blockscout` ke scan.botchain.ai diblokir Cloudflare WAF ("you have been blocked") · tidak diakali; dibuat `contracts/out/GitAura.standard-input.json` (gitignored) untuk upload manual di UI explorer
+- 2026-10-20 · 9 · Bar bahasa: sisa di luar top 3 ditampilkan sebagai segmen "Other" (flex-grow proporsional) · share dihitung dari semua bahasa sehingga top 3 tidak pernah 100%
+- 2026-10-20 · 9 · Live di `https://git-aura-five.vercel.app` (chain 677). Stamp pertama gagal `InvalidProof()` (0x09bde339) → `ATTESTER_PRIVATE_KEY` di Vercel bukan key `0xCF43…`; user diminta mengganti + redeploy
+- 2026-10-20 · 9 · Logo: `LogoMark` (tile tinta + kilau 4 sudut pink + kilau kecil kuning), juga `app/icon.svg` menggantikan favicon bawaan Next
+- 2026-10-20 · 9 · Menu wallet di navbar: Copy address · Switch wallet (`wallet_requestPermissions` → pemilih akun) · Disconnect (`wallet_revokePermissions` + flag `ga_wallet_off` di localStorage agar tidak auto-connect) · diuji via CDP dengan provider EIP-1193 palsu; copy baru di UI_COPY
 
 ## TODO / terbuka
 - [x] Konfirmasi native currency BOT Chain → `BOT`/`BOT`/18 (mainnet & testnet, dari envs.js explorer resmi, 2026-10-18)

@@ -10,6 +10,7 @@ Pakai teks ini **persis** (bahasa Inggris). Simpan di `web/lib/copy.ts` sebagai 
 ## Nav
 - Logo: `GitAura`
 - Wallet: `Connect wallet` → setelah connect: `0x12ab…9f3c`
+- Menu wallet (klik alamat): `Copy address` (toast `Address copied`) · `Switch wallet` · `Disconnect`; aria-label tombol: `Wallet menu`
 - Avatar chip: `@{username}` · menu: `Sign out`
 - Menu mobile: `Gallery`, `How it works`
 

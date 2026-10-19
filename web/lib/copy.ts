@@ -14,6 +14,13 @@ export const COPY = {
     signOut: "Sign out",
     gallery: "Gallery",
     howItWorks: "How it works",
+    walletMenu: {
+      label: "Wallet menu",
+      copyAddress: "Copy address",
+      copied: "Address copied",
+      switchWallet: "Switch wallet",
+      disconnect: "Disconnect",
+    },
   },
   hero: {
     eyebrow: "READ ANY DEVELOPER'S AURA",

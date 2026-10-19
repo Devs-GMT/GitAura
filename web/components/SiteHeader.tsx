@@ -38,9 +38,35 @@ export function SiteHeader({ session, wallet }: SiteHeaderProps) {
     }
   }
 
+  async function onSwitchWallet() {
+    try {
+      await wallet.switchAccount();
+    } catch (err) {
+      const kind = classifyWalletError(err);
+      if (kind === "wrong_chain") setToast(COPY.errors.switchChain);
+      // rejected (user menutup pemilih akun) → diam saja
+    }
+  }
+
+  const walletMenu =
+    wallet.address && wallet.onRightChain
+      ? {
+          address: wallet.address,
+          onSwitch: onSwitchWallet,
+          onDisconnect: () => void wallet.disconnect(),
+          onCopied: () => setToast(COPY.nav.walletMenu.copied),
+        }
+      : null;
+
   return (
     <>
-      <NavBar user={session.user} walletLabel={walletLabel} onWalletClick={onWalletClick} onSignOut={session.signOut} />
+      <NavBar
+        user={session.user}
+        walletLabel={walletLabel}
+        onWalletClick={onWalletClick}
+        onSignOut={session.signOut}
+        walletMenu={walletMenu}
+      />
       <Toast message={toast} onDone={() => setToast(null)} />
     </>
   );
