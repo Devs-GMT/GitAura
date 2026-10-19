@@ -14,7 +14,7 @@ Claude Code: update file ini di akhir setiap fase. Jangan hapus catatan lama.
 | 6 | UI shell & design system | ✅ | landing (nav, hero+PromptBox, marquee, how it works, footer) dicek screenshot headless di 360/375/1440 tanpa scroll horizontal; link footer benar |
 | 7 | Flow utama | ✅ | 68 test vitest; user stamp lewat UI di testnet: Aura #1 `@adityazulkarnaen` (tx `0x699e…b8`); peek/404/375px dicek via Chrome CDP |
 | 8 | Gallery & share link | ✅ | 72 test; `/a/1` & `/?aura=1` → 200 + `og:title` per aura; id tak ada/invalid → "Aura not found"; dibuka di profil Chrome baru tanpa `window.ethereum` (incognito-setara) + `/gallery` memuat 2 aura dari chain |
-| 9 | Mainnet & live | 🟨 | /security-check: 9/9 lolos; native currency dikonfirmasi; attester prod `0xCF43cf2C66AC4EE6C8C4e9393Cbd3f397F9925ea` (saldo 0, nonce 0); simulasi deploy 677 OK (~0,0446 BOT); **menunggu: saldo BOT deployer di 677, deploy, OAuth App prod, Vercel + domain** · alamat mainnet: · URL: |
+| 9 | Mainnet & live | 🟨 | ✅ kontrak mainnet live (attester `0xCF43…25ea`, tx `0xd191…4db3`, 1 715 340 gas = 0,0343 BOT); source belum terverifikasi (CLI diblokir Cloudflare → upload manual); **menunggu: Vercel + OAuth App prod + domain** · alamat mainnet: [`0x54004efF59C672BB94BD662741589e9Ae6ECFcA8`](https://scan.botchain.ai/address/0x54004efF59C672BB94BD662741589e9Ae6ECFcA8) · URL: |
 | 10 | README, demo, submission | ⬜ | |
 
 Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
@@ -78,6 +78,8 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - 2026-10-18 · 9 · `npm audit --omit=dev`: 1 high + 1 moderate di PostCSS bawaan Next 15 (fix hanya di Next 16 = major) · PostCSS hanya memproses CSS kita saat build, bukan input user → risiko rendah; tetap di Next 15.5.28 (versi 15 terbaru), tinjau upgrade Next 16 setelah submission
 - 2026-10-18 · 9 · Belum ada security headers (hanya `X-Powered-By`) · opsional sebelum go-live: `poweredByHeader:false` + X-Frame-Options/Referrer-Policy/X-Content-Type-Options di `next.config.ts`
 - 2026-10-19 · 9 · Attester produksi = akun MetaMask terpisah `0xCF43…25ea` (≠ deployer, ≠ attester testnet, tanpa saldo) · key hanya disimpan di env Vercel; alamat dikunci `immutable` di kontrak mainnet. Simulasi: deploy sebagai tx pertama deployer di 677 → alamat sama dengan testnet `0x54004efF…FcA8`
+- 2026-10-19 · 9 · Deploy mainnet 677 sukses (blok 27231579); dicek via RPC: bytecode 7686 B, `attester()` = `0xCF43…25ea`, `total()` = 0, explorer 200. Alamat sama dengan testnet karena deploy = tx pertama deployer (nonce 0)
+- 2026-10-19 · 9 · `forge verify-contract --verifier blockscout` ke scan.botchain.ai diblokir Cloudflare WAF ("you have been blocked") · tidak diakali; dibuat `contracts/out/GitAura.standard-input.json` (gitignored) untuk upload manual di UI explorer
 
 ## TODO / terbuka
 - [x] Konfirmasi native currency BOT Chain → `BOT`/`BOT`/18 (mainnet & testnet, dari envs.js explorer resmi, 2026-10-18)
@@ -94,5 +96,7 @@ Legenda: ⬜ belum · 🟨 sedang · ✅ selesai · ⛔ terblokir
 - [ ] Verifikasi animasi ketik footer & ticker di perangkat mobile asli (di iframe headless IntersectionObserver tidak memicu)
 
 - [x] Uji manual Fase 7: stamp sukses via UI (Aura #1). Belum dicoba eksplisit: tx ditolak, jaringan salah, copy link/share X — cek sekilas sebelum go-live
+
+- [ ] Verifikasi source kontrak mainnet manual di scan.botchain.ai (Standard JSON Input, compiler v0.8.24, optimizer off, constructor arg attester)
 
 ## Bug diketahui

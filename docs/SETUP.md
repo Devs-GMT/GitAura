@@ -66,6 +66,10 @@ ATTESTER_ADDRESS=0x<prod-attester> forge script script/Deploy.s.sol --rpc-url bo
 Cek alamat di explorer, lalu isi `NEXT_PUBLIC_CONTRACT_ADDRESS`.
 Jika explorer mendukung verifikasi (Blockscout-like), coba `forge verify-contract`; kalau tidak, upload source manual.
 
+> Catatan 2026-10-19: API `scan.botchain.ai` memblokir `forge verify-contract` (Cloudflare WAF). Buat Standard JSON Input:
+> `forge verify-contract <addr> src/GitAura.sol:GitAura --chain-id 677 --constructor-args $(cast abi-encode "constructor(address)" <attester>) --show-standard-json-input > out/GitAura.standard-input.json`
+> lalu di explorer → Contract → **Verify & publish** → *Solidity (Standard JSON input)*, compiler `v0.8.24`, upload file tsb.
+
 ## 7. Deploy web (Vercel)
 1. Import repo di Vercel, **Root Directory = `web`**.
 2. Isi semua env vars produksi.
