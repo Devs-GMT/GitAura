@@ -8,6 +8,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { LangMarquee } from "@/components/LangMarquee";
 import { StandaloneHeader } from "@/components/StandaloneHeader";
 import { auraMetadata, loadAura } from "@/lib/aura-page";
+import { fetchContributions } from "@/lib/contrib";
 
 type Props = { searchParams: Promise<{ aura?: string | string[] }> };
 
@@ -27,7 +28,7 @@ export default async function Home({ searchParams }: Props) {
       <>
         <StandaloneHeader />
         <main>
-          <AuraSingle aura={aura} failed={failed} />
+          <AuraSingle aura={aura} failed={failed} weeks={aura ? await fetchContributions(aura.username) : null} />
         </main>
         <Footer />
       </>

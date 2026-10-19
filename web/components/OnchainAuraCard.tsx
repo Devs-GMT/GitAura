@@ -2,17 +2,20 @@ import { explorerAddressUrl, languageAt } from "@/lib/config";
 import { avatarUrl, type OnchainAura } from "@/lib/chain";
 import { COPY } from "@/lib/copy";
 import { shortAddress } from "@/lib/format";
+import type { ContribWeeks } from "@/lib/contrib";
 import { Badge } from "./Badge";
+import { ContribBanner } from "./ContribBanner";
 
 const date = new Intl.DateTimeFormat("en", { year: "numeric", month: "short", day: "numeric" });
 
 /** Kartu read-only yang dimuat dari kontrak (share link / galeri). Data = apa yang tersimpan on-chain. */
-export function OnchainAuraCard({ aura }: { aura: OnchainAura }) {
+export function OnchainAuraCard({ aura, weeks }: { aura: OnchainAura; weeks?: ContribWeeks | null }) {
   const lang = languageAt(aura.topLang);
   return (
     <article className="animate-card-in overflow-hidden rounded-card border border-border bg-surface shadow-card">
-      <div className="relative h-28 md:h-32" style={{ background: lang.from }} aria-hidden="true">
-        <span className="absolute right-4 top-4 rounded-pill bg-white/85 px-3 py-1 font-mono text-[12px] font-medium text-ink">
+      <div className="relative">
+        <ContribBanner color={lang.from} weeks={weeks} />
+        <span className="absolute right-4 top-4 rounded-pill bg-white/90 px-3 py-1 font-mono text-[12px] font-medium text-ink shadow-sm">
           {COPY.card.onchain.id(aura.id)}
         </span>
       </div>

@@ -3,6 +3,7 @@ import { AuraSingle } from "@/components/AuraSingle";
 import { Footer } from "@/components/Footer";
 import { StandaloneHeader } from "@/components/StandaloneHeader";
 import { auraMetadata, loadAura } from "@/lib/aura-page";
+import { fetchContributions } from "@/lib/contrib";
 
 // Aura bisa di-stamp ulang (update di tempat) → segarkan tiap menit.
 export const revalidate = 60;
@@ -21,7 +22,7 @@ export default async function AuraPage({ params }: Props) {
     <>
       <StandaloneHeader />
       <main>
-        <AuraSingle aura={aura} failed={failed} />
+        <AuraSingle aura={aura} failed={failed} weeks={aura ? await fetchContributions(aura.username) : null} />
       </main>
       <Footer />
     </>

@@ -1,7 +1,12 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { LANGUAGES, languageAt } from "@/lib/config";
 import { COPY } from "@/lib/copy";
 import type { GitHubStats } from "@/lib/github";
+import type { ContribWeeks } from "@/lib/contrib";
 import { Badge, type BadgeKind } from "./Badge";
+import { ContribBanner } from "./ContribBanner";
 
 export type AuraText = {
   title: string;
@@ -27,6 +32,18 @@ function langColor(name: string): string {
 
 export function AuraCard({ stats, aura, topLang, badge }: AuraCardProps) {
   const lang = languageAt(topLang);
+  const [weeks, setWeeks] = useState<ContribWeeks | null>(null);
+  useEffect(() => {
+    let alive = true;
+    setWeeks(null);
+    fetch(`/api/contrib/${encodeURIComponent(stats.login)}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { weeks: ContribWeeks | null } | null) => alive && setWeeks(d?.weeks ?? null))
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [stats.login]);
   // share = porsi dari SEMUA repo berbahasa; sisa di luar top 3 ditampilkan sebagai "Other" agar bar = 100%.
   const rest = 1 - stats.topLanguages.reduce((s, l) => s + l.share, 0);
   const segments = [
@@ -43,8 +60,8 @@ export function AuraCard({ stats, aura, topLang, badge }: AuraCardProps) {
 
   return (
     <article className="animate-card-in overflow-hidden rounded-card border border-border bg-surface shadow-card">
-      {/* Banner satu warna dari bahasa teratas (tabel topLang, kolom `from`). */}
-      <div className="h-28 md:h-32" style={{ background: lang.from }} aria-hidden="true" />
+      {/* Banner: warna bahasa teratas + grid commit GitHub user. */}
+      <ContribBanner color={lang.from} weeks={weeks} />
 
       <div className="px-6 pb-6 md:px-8 md:pb-8">
         <div className="relative z-10 -mt-10 flex items-end justify-between gap-3">

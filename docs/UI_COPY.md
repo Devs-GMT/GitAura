@@ -8,7 +8,7 @@ Pakai teks ini **persis** (bahasa Inggris). Simpan di `web/lib/copy.ts` sebagai 
 - OG per aura: `{title} — @{username} · GitAura`
 
 ## Nav
-- Logo: `GA.` (inisial, warna aksen pink; nama produk tetap `GitAura` di title/meta)
+- Logo navbar: `GitAura.` (bold, warna aksen pink) · favicon: inisial `GA.`
 - Wallet: `Connect wallet` → setelah connect: `0x12ab…9f3c`
 - Menu wallet (klik alamat): `Copy address` (toast `Address copied`) · `Switch wallet` · `Disconnect`; aria-label tombol: `Wallet menu`
 - Avatar chip: `@{username}` · menu: `Sign out`

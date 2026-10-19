@@ -1,5 +1,6 @@
 import { languageAt } from "@/lib/config";
 import { Badge } from "./Badge";
+import { ContribBanner } from "./ContribBanner";
 
 // Ilustrasi kartu aura (data contoh). Dekoratif — AuraCard asli dibangun di Fase 7.
 const TS = languageAt(1);
@@ -9,11 +10,20 @@ const LANGS = [
   { name: "Go", share: 15, color: "#00ADD8" },
 ];
 
+// Grid commit contoh (deterministik, bukan data asli) untuk ilustrasi.
+const DEMO_WEEKS = Array.from({ length: 53 }, (_, x) =>
+  Array.from({ length: 7 }, (_, y) => {
+    const n = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+    const r = n - Math.floor(n);
+    return r < 0.45 ? 0 : r < 0.7 ? 1 : r < 0.85 ? 2 : r < 0.95 ? 3 : 4;
+  }),
+);
+
 export function RevealMock() {
   return (
     <div className="relative h-full w-full">
       <div className="absolute right-6 top-8 w-[300px] max-w-[calc(100%-1.5rem)] overflow-hidden rounded-[24px] border border-border bg-surface shadow-card md:-right-12 md:top-14 md:w-[440px] md:max-w-none">
-        <div className="h-24" style={{ background: TS.from }} />
+        <ContribBanner color={TS.from} weeks={DEMO_WEEKS} className="h-24" />
         <div className="px-6 pb-6">
           <div className="-mt-9 flex items-end justify-between">
             <span className="size-[72px] rounded-full bg-gradient-to-br from-voxel-yellow to-voxel-orange ring-4 ring-surface" />

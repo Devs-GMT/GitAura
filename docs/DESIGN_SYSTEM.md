@@ -46,14 +46,14 @@ Font via `next/font` (paket `geist`). Body `bg-bg text-ink`.
 ## 4. Komponen
 | Komponen | Spesifikasi |
 |---|---|
-| `NavBar` | Sticky, `bg-bg/80 backdrop-blur`, tinggi 64px. Kiri: logo inisial **"GA."** bold, warna `accent` (favicon: tile pink + "GA." putih, `app/icon.svg`). Kanan: `AvatarChip` (saat login) + `WalletButton` (pill pink) + hamburger (< md, buka sheet berisi Gallery, How it works, Sign out). |
+| `NavBar` | Sticky, `bg-bg/80 backdrop-blur`, tinggi 64px. Kiri: wordmark **"GitAura."** bold, warna `accent` (favicon: tile pink + inisial "GA." putih, `app/icon.svg`). Kanan: `AvatarChip` (saat login) + `WalletButton` (pill pink) + hamburger (< md, buka sheet berisi Gallery, How it works, Sign out). |
 | `PromptBox` | Card `surface`, radius-card, border 1px `border`, `shadow-card` + `shadow-glow`. Padding 24/32px. Slot: aksi utama, divider, input baris. Mode `loading` menampilkan `TickerText`. |
 | `GitHubButton` | Hitam `#111`, teks putih, radius 14px, tinggi 52px, ikon Octocat mark resmi (SVG dari GitHub logo guidelines, tidak diubah warnanya selain hitam/putih). |
 | `Divider` | Garis tipis dengan label tengah mono kecil "or peek at anyone". |
 | `PeekInput` | Prefix statis `github.com/` (muted) + input; chip "GitHub" & "BOT Chain" (outline, mono kecil); tombol pink [Peek]. Enter = submit. |
 | `Chip` | Pill, border `border`, bg `surface`, 13px. Varian `accent` (outline pink). |
 | `Badge` | `Verified`: outline pink + ✓; `Preview`: bg `#ECEAE5` teks muted; `Classic`: outline muted, label "classic aura". |
-| `AuraCard` | Radius-card, header **satu warna solid** dari `topLang` (kolom `from` di tabel CONTRACT_SPEC §5), tanpa gradient; avatar 72px ring putih; @username mono; title besar; vibe muted; 3 `Chip` traits; stats grid 2×2 (repos, followers, stars, most-starred); bar bahasa bertumpuk (3 warna) dengan legend. Rasio ramah screenshot (≈ 4:5 di mobile). |
+| `AuraCard` | Radius-card, header **satu warna solid** dari `topLang` (kolom `from` di tabel CONTRACT_SPEC §5), tanpa gradient, dihiasi **grid commit GitHub user ≈1 tahun** (`ContribBanner`, kotak putih transparan per level 0–4, minggu terbaru di kanan, memudar ke kiri; data dari `/api/contrib/[username]`, cache 6 jam; gagal → solid); avatar 72px ring putih; @username mono; title besar; vibe muted; 3 `Chip` traits; stats grid 2×2 (repos, followers, stars, most-starred); bar bahasa bertumpuk (3 warna) dengan legend. Rasio ramah screenshot (≈ 4:5 di mobile). |
 | `SaveBar` | Di bawah AuraCard: status langkah (Connect → Prove → Sign → Confirmed) + tombol utama. |
 | `SuccessPanel` | "Aura #ID" + Verified badge, link tx (explorer), [Copy share link], [Share on X]. |
 | `TickerText` | Mono, ganti kalimat tiap ~900ms dengan fade + caret ▉ berkedip. |
