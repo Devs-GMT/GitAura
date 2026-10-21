@@ -13,6 +13,7 @@
     "e2e:attest": "tsx --conditions=react-server scripts/attest-e2e.mts"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "ethers": "^6.17.0",
     "jose": "^6.2.12",
     "next": "15.5.28",
